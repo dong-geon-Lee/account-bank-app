@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import Balance from "../components/Balance/Balance";
 import Hedaer from "../components/Header/Hedaer";
 import { accounts } from "../data/fakeAccounts";
-import { Container } from "./styles";
+import { Container, Wrapper } from "./styles";
 
 const Account = () => {
   const [activeUser, setActiveUser] = useState(false);
@@ -14,7 +15,13 @@ const Account = () => {
         setActiveUser={setActiveUser}
         setMessage={setMessage}
       />
-      {activeUser ? <h1>{message}</h1> : <h1>{message}</h1>}
+      {activeUser ? (
+        <Wrapper>
+          <Balance></Balance>
+        </Wrapper>
+      ) : (
+        <h1>{message}</h1>
+      )}
     </Container>
   );
 };

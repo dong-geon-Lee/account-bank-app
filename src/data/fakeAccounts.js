@@ -1,9 +1,42 @@
 const account1 = {
   owner: "Jonas Schmedtmann",
   username: "js",
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2,
   pin: 1111,
+  movements: [
+    {
+      id: 1,
+      price: 200,
+    },
+    {
+      id: 2,
+      price: 450,
+    },
+    {
+      id: 3,
+      price: -400,
+    },
+    {
+      id: 4,
+      price: 3000,
+    },
+    {
+      id: 5,
+      price: -650,
+    },
+    {
+      id: 6,
+      price: -130,
+    },
+    {
+      id: 7,
+      price: 70,
+    },
+    {
+      id: 8,
+      price: 1300,
+    },
+  ],
 };
 
 const account2 = {
@@ -12,6 +45,40 @@ const account2 = {
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
+  movements: [
+    {
+      id: 1,
+      price: 5000,
+    },
+    {
+      id: 2,
+      price: 3400,
+    },
+    {
+      id: 3,
+      price: -150,
+    },
+    {
+      id: 4,
+      price: -790,
+    },
+    {
+      id: 5,
+      price: -3210,
+    },
+    {
+      id: 6,
+      price: -1000,
+    },
+    {
+      id: 7,
+      price: 8500,
+    },
+    {
+      id: 8,
+      price: -30,
+    },
+  ],
 };
 
 const account3 = {

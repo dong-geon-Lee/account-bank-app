@@ -1,7 +1,7 @@
 import React from "react";
 import { TextBox, Container, Section, Label, Span, Text } from "./styles";
 
-const Balance = () => {
+const Balance = ({ totalBalance }) => {
   const date = new Date();
   const formattedDate = new Intl.DateTimeFormat("ko-KR").format(date);
 
@@ -9,10 +9,10 @@ const Balance = () => {
     <Container>
       <Section>
         <TextBox>
-          <Label>Current balance</Label>
+          <Label>현재 계좌</Label>
           <Span>{formattedDate}</Span>
         </TextBox>
-        <Text>3840원</Text>
+        <Text>{totalBalance}원</Text>
       </Section>
     </Container>
   );

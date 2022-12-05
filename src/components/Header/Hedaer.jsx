@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Container,
   Description,
@@ -10,19 +10,19 @@ import {
   ArrowIcons,
 } from "./styles";
 
-const Hedaer = ({ accounts, setActiveUser, setMessage }) => {
-  const [userInfo, setuserInfo] = useState({ username: "", pin: "" });
+const Hedaer = ({ accounts, setActiveUser, setMessage, setCurrentUser }) => {
+  const [userInputs, setuserInputs] = useState({ username: "", pin: "" });
   const inputRef = useRef();
 
   const onChange = (e) => {
-    setuserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    setuserInputs({ ...userInputs, [e.target.name]: e.target.value });
   };
 
   const displayLoginUser = (e) => {
     e.preventDefault();
 
     if (!userCheck()) {
-      setuserInfo({ username: "", pin: "" });
+      setuserInputs({ username: "", pin: "" });
       setMessage("잘못된 유저 정보입니다");
       setActiveUser(false);
       inputRef.current.blur();
@@ -30,20 +30,14 @@ const Hedaer = ({ accounts, setActiveUser, setMessage }) => {
     }
 
     setActiveUser(true);
-    setMessage("로그인 완료!");
-    setuserInfo({ username: "", pin: "" });
+    setCurrentUser(userCheck());
+    setuserInputs({ username: "", pin: "" });
     inputRef.current.blur();
   };
 
   const userCheck = () => {
-    const { username, pin } = userInfo;
-
-    const accountList = accounts.map((acc) => {
-      const username = acc.username;
-      const pin = +acc.pin;
-      return { username, pin };
-    });
-
+    const { username, pin } = userInputs;
+    const accountList = accounts.map((acc) => acc);
     const loginUser = accountList.find(
       (acc) => acc.username === username && acc.pin === +pin
     );
@@ -64,17 +58,17 @@ const Hedaer = ({ accounts, setActiveUser, setMessage }) => {
       <Form onSubmit={displayLoginUser}>
         <Input
           type="text"
-          placeholder="user"
+          placeholder="아이디"
           name="username"
-          value={userInfo.username}
+          value={userInputs.username}
           onChange={onChange}
           ref={inputRef}
         />
         <Input
           type="password"
-          placeholder="PIN"
+          placeholder="비밀번호"
           name="pin"
-          value={userInfo.pin}
+          value={userInputs.pin}
           onChange={onChange}
           ref={inputRef}
         />

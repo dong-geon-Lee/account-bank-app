@@ -1,10 +1,13 @@
 import React from "react";
+import Account from "./pages/Account";
+import GlobalStyle from "./styles/GlobalStyle";
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <GlobalStyle />
+      <Account />
+    </>
   );
 };
 

@@ -1,5 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 
+const size = {
+  mobile: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  desktop: "1440px",
+};
+
+export const device = {
+  mobile: `(max-width: ${size.mobile})`,
+  tablet: `(max-width: ${size.tablet})`,
+  laptop: `(max-width: ${size.laptop})`,
+  desktop: `(max-width: ${size.desktop})`,
+};
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0; 
@@ -14,7 +28,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f3f3f3;
+    line-height: 1.5;
+    overflow: hidden;
   }
 `;
 

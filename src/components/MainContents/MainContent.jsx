@@ -7,6 +7,8 @@ import {
   Div,
   Label,
   Span,
+  Section,
+  Title,
 } from "./styles";
 
 const MainContent = ({ currentUser }) => {
@@ -31,7 +33,17 @@ const MainContent = ({ currentUser }) => {
             ))}
         </LeftSide>
 
-        <RightSide>right</RightSide>
+        <RightSide>
+          <Section>
+            <Title>송금 하기</Title>
+          </Section>
+          <Section>
+            <Title>대출 요청</Title>
+          </Section>
+          <Section>
+            <Title>계좌 삭제</Title>
+          </Section>
+        </RightSide>
       </Wrapper>
     </Container>
   );

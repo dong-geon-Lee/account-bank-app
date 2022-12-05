@@ -11,11 +11,11 @@ export const Container = styled.header`
 export const Description = styled.h2`
   font-size: 2.4rem;
   font-weight: 600;
-  flex: 0.45;
+  flex: 0.5;
 `;
 
 export const Div = styled.div`
-  flex: 0.3;
+  flex: 0.25;
 `;
 
 export const LogoImg = styled.img`
@@ -27,18 +27,18 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 0.25;
+  flex: 0.35;
 `;
 
 export const Input = styled.input`
   width: 100%;
   font-family: inherit;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   text-align: center;
   border: 1px solid #e9ecef;
   border-radius: 2rem;
   outline: none;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.2rem;
   transition: border 0.4s ease;
 
   &:focus {

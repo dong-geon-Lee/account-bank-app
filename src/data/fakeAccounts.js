@@ -1,5 +1,5 @@
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  bankAccount: "국민은행",
   username: "js",
   interestRate: 1.2,
   pin: 1111,
@@ -40,7 +40,7 @@ const account1 = {
 };
 
 const account2 = {
-  owner: "Jessica Davis",
+  bankAccount: "기업은행",
   username: "jd",
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,

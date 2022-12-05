@@ -47,7 +47,7 @@ const Hedaer = ({ accounts, setActiveUser, setMessage, setCurrentUser }) => {
 
   return (
     <Container>
-      <Description>Log in to get started</Description>
+      <Description>시작하려면 로그인하세요</Description>
       <Div>
         <LogoImg
           src={`${process.env.PUBLIC_URL}/assets/logo.png`}

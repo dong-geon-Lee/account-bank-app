@@ -6,6 +6,9 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   height: 49rem;
+  gap: 1.8rem;
+
+  /* overflow: hidden; */
 `;
 
 export const LeftSide = styled.div`
@@ -14,6 +17,7 @@ export const LeftSide = styled.div`
   background-color: #fff;
   overflow: scroll;
   width: 56rem;
+  border-radius: 1.6rem;
 `;
 
 export const Div = styled.div`
@@ -46,4 +50,24 @@ export const Span = styled.span`
 
 export const RightSide = styled.div`
   background-color: #f3f3f3;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1.8rem;
+`;
+
+export const Section = styled.section`
+  background-color: #ffbf04;
+  border-radius: 1.6rem;
+  padding: 1.6rem 2rem;
+
+  & + section {
+    background-color: #61c378;
+    & + section {
+      background-color: #f4445d;
+    }
+  }
+`;
+
+export const Title = styled.h1`
+  font-size: 1.8rem;
 `;

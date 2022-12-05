@@ -10,6 +10,8 @@ const Account = () => {
   const [activeUser, setActiveUser] = useState(false);
   const [message, setMessage] = useState("로그인 해주세요");
   const [totalBalance, setTotalBalance] = useState(0);
+  const [bankName, setBankName] = useState("");
+  const [username, setUsername] = useState("");
 
   console.log(currentUser, "현재유저");
 
@@ -20,6 +22,8 @@ const Account = () => {
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
+    setBankName(currentUser?.bankAccount);
+    setUsername(currentUser?.username);
   }, [currentUser]);
 
   return (
@@ -29,11 +33,10 @@ const Account = () => {
         setCurrentUser={setCurrentUser}
         setActiveUser={setActiveUser}
         setMessage={setMessage}
-        setTotalBalance={setTotalBalance}
       />
       {activeUser ? (
         <Wrapper>
-          <Balance totalBalance={totalBalance}></Balance>
+          <Balance totalBalance={totalBalance} bankName={bankName}></Balance>
           <MainContent currentUser={currentUser} />
         </Wrapper>
       ) : (

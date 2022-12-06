@@ -17,7 +17,7 @@ const Hedaer = ({
   setCurrentUser,
   name,
 }) => {
-  const [userInputs, setuserInputs] = useState({ username: "", pin: "" });
+  const [userInputs, setuserInputs] = useState({ username: "", password: "" });
   const inputRef = useRef();
 
   const onChange = (e) => {
@@ -25,10 +25,10 @@ const Hedaer = ({
   };
 
   const checkUser = () => {
-    const { username, pin } = userInputs;
+    const { username, password } = userInputs;
     const accountList = accounts.map((acc) => acc);
     const loginUser = accountList.find(
-      (acc) => acc.username === username && acc.pin === +pin
+      (acc) => acc.userId === username && acc.pin === +password
     );
 
     return loginUser;
@@ -38,7 +38,7 @@ const Hedaer = ({
     e.preventDefault();
 
     if (!checkUser()) {
-      setuserInputs({ username: "", pin: "" });
+      setuserInputs({ username: "", password: "" });
       setMessage("잘못된 유저 정보입니다");
       setActiveUser(false);
       inputRef.current.blur();
@@ -47,7 +47,7 @@ const Hedaer = ({
 
     setActiveUser(true);
     setCurrentUser(checkUser());
-    setuserInputs({ username: "", pin: "" });
+    setuserInputs({ username: "", password: "" });
     inputRef.current.blur();
   };
 
@@ -56,6 +56,7 @@ const Hedaer = ({
       <Description>
         {name ? `환영합니다! ${name}님` : "시작하려면 로그인하세요"}
       </Description>
+
       <Div>
         <LogoImg
           src={`${process.env.PUBLIC_URL}/assets/logo.png`}
@@ -75,8 +76,8 @@ const Hedaer = ({
         <Input
           type="password"
           placeholder="비밀번호"
-          name="pin"
-          value={userInputs.pin}
+          name="password"
+          value={userInputs.password}
           onChange={onChange}
           ref={inputRef}
         />

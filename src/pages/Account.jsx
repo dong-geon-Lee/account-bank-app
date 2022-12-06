@@ -3,7 +3,7 @@ import Balance from "../components/Balance/Balance";
 import Hedaer from "../components/Header/Hedaer";
 import MainContent from "../components/MainContents/MainContent";
 import { accounts } from "../data/fakeAccounts";
-import { calcTotalBalance } from "../helper/calculates";
+import { calcTotalBalance, resetList } from "../helper/calculates";
 import { Container, Wrapper } from "./styles";
 
 const Account = () => {
@@ -16,14 +16,13 @@ const Account = () => {
   const [accNumber, setAccNumber] = useState("");
   const [dates, setDates] = useState(null);
 
-  console.log(currentUser, "현재유저");
-
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
     setBankName(currentUser?.bankAccount);
     setName(currentUser?.name);
     setAccNumber(currentUser?.accountNumber);
     setDates(currentUser?.createdDate);
+    // currentUser && setCurrentUser(resetList());
   }, [currentUser]);
 
   return (
@@ -43,7 +42,12 @@ const Account = () => {
             accNumber={accNumber}
             dates={dates}
           ></Balance>
-          <MainContent currentUser={currentUser} />
+          <MainContent
+            currentUser={currentUser}
+            accounts={accounts}
+            totalBalance={totalBalance}
+            setCurrentUser={setCurrentUser}
+          />
         </Wrapper>
       ) : (
         <h1>{message}</h1>

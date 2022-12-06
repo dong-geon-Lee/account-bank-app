@@ -1,6 +1,6 @@
 const account1 = {
   bankAccount: "국민은행",
-  username: "js",
+  userId: "js",
   name: "최연성",
   interestRate: 1.2,
   pin: 1111,
@@ -44,8 +44,8 @@ const account1 = {
 
 const account2 = {
   bankAccount: "기업은행",
-  username: "jd",
-  name: "이철수",
+  userId: "jd",
+  name: "이소라",
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
@@ -87,20 +87,21 @@ const account2 = {
   ],
 };
 
-const account3 = {
-  owner: "Steven Thomas Williams",
-  username: "stw",
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
-  pin: 3333,
-};
+// const account3 = {
+//   owner: "Steven Thomas Williams",
+//   username: "stw",
+//   movements: [200, -200, 340, -300, -20, 50, 400, -460],
+//   interestRate: 0.7,
+//   pin: 3333,
+// };
 
-const account4 = {
-  owner: "Sarah Smith",
-  username: "ss",
-  movements: [430, 1000, 700, 50, 90],
-  interestRate: 1,
-  pin: 4444,
-};
+// const account4 = {
+//   owner: "Sarah Smith",
+//   username: "ss",
+//   movements: [430, 1000, 700, 50, 90],
+//   interestRate: 1,
+//   pin: 4444,
+// };
 
-export const accounts = [account1, account2, account3, account4];
+// export const accounts = [account1, account2, account3, account4];
+export const accounts = [account1, account2];

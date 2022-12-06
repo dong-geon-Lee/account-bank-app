@@ -1,4 +1,5 @@
 import React from "react";
+import { formattedDates, formattedTotal } from "../../helper/formatted";
 import {
   TextBox,
   Container,
@@ -9,10 +10,7 @@ import {
   Strong,
 } from "./styles";
 
-const Balance = ({ totalBalance, bankName }) => {
-  const date = new Date();
-  const formattedDate = new Intl.DateTimeFormat("ko-KR").format(date);
-
+const Balance = ({ totalBalance, bankName, accNumber, dates }) => {
   return (
     <Container>
       <Section>
@@ -20,10 +18,10 @@ const Balance = ({ totalBalance, bankName }) => {
           <Label>
             현재 계좌: <Strong>{bankName}</Strong>
           </Label>
-          <Span>계좌 번호: 480166-87-1010244</Span>
-          <Span>계좌 개설: {formattedDate}</Span>
+          <Span>계좌 번호: {accNumber}</Span>
+          <Span>계좌 개설: {formattedDates(dates)}</Span>
         </TextBox>
-        <Text>{totalBalance}원</Text>
+        <Text>{formattedTotal(totalBalance)}원</Text>
       </Section>
     </Container>
   );

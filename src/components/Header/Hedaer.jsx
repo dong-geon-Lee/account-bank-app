@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { authUser } from "../../helper/calculates";
 import {
   Container,
   Description,
@@ -17,37 +18,28 @@ const Hedaer = ({
   setCurrentUser,
   name,
 }) => {
-  const [userInputs, setuserInputs] = useState({ username: "", password: "" });
+  const [userInputs, setuserInputs] = useState({ userId: "", password: "" });
+  const { userId, password } = userInputs;
   const inputRef = useRef();
 
   const onChange = (e) => {
     setuserInputs({ ...userInputs, [e.target.name]: e.target.value });
   };
 
-  const checkUser = () => {
-    const { username, password } = userInputs;
-    const accountList = accounts.map((acc) => acc);
-    const loginUser = accountList.find(
-      (acc) => acc.userId === username && acc.pin === +password
-    );
-
-    return loginUser;
-  };
-
   const displayLoginUser = (e) => {
     e.preventDefault();
 
-    if (!checkUser()) {
-      setuserInputs({ username: "", password: "" });
-      setMessage("잘못된 유저 정보입니다");
+    if (!authUser(accounts, userId, password)) {
       setActiveUser(false);
+      setMessage("잘못된 유저 정보입니다");
+      setuserInputs({ userId: "", password: "" });
       inputRef.current.blur();
       return;
     }
 
     setActiveUser(true);
-    setCurrentUser(checkUser());
-    setuserInputs({ username: "", password: "" });
+    setCurrentUser(authUser(accounts, userId, password));
+    setuserInputs({ userId: "", password: "" });
     inputRef.current.blur();
   };
 
@@ -68,8 +60,8 @@ const Hedaer = ({
         <Input
           type="text"
           placeholder="아이디"
-          name="username"
-          value={userInputs.username}
+          name="userId"
+          value={userId}
           onChange={onChange}
           ref={inputRef}
         />
@@ -77,7 +69,7 @@ const Hedaer = ({
           type="password"
           placeholder="비밀번호"
           name="password"
-          value={userInputs.password}
+          value={password}
           onChange={onChange}
           ref={inputRef}
         />

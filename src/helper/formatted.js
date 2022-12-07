@@ -1,5 +1,5 @@
 export const formattedTotal = (data) => {
-  const option = { maximumSignificantDigits: 3 };
+  const option = { maximumSignificantDigits: 6 };
   return new Intl.NumberFormat("Ko-KR", option).format(data);
 };
 

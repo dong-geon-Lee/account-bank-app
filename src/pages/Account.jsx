@@ -15,6 +15,7 @@ const Account = () => {
   const [name, setName] = useState("");
   const [accNumber, setAccNumber] = useState("");
   const [dates, setDates] = useState(null);
+  const [totalInterest, setTotalInterest] = useState(0);
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
@@ -22,10 +23,11 @@ const Account = () => {
     setName(currentUser?.name);
     setAccNumber(currentUser?.accountNumber);
     setDates(currentUser?.createdDate);
-    setCurrentUser(currentUser);
-  }, [currentUser, accounts]);
+    setTotalInterest(currentUser?.totalInterest);
+  }, [currentUser]);
 
-  console.log(currentUser, "현재는??");
+  console.log(currentUser);
+  console.log(totalInterest);
 
   return (
     <Container>

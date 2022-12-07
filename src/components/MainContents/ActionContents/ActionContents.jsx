@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Box, Button, Input, Form, Text, Title } from "./styles";
 import {
+  calcInterest,
+  calcLoanLimit,
+  calcTransferLimit,
   calcUpdatedMovements,
   findAccountNumber,
   findLoginUser,
@@ -28,11 +31,11 @@ const ActionContents = ({
   const handleTransfer = (e) => {
     e.preventDefault();
 
-    if (!currentUser) return;
+    if (!currentUser || !accNumber || !transferAmount) return;
 
     const checkLoginUser = findLoginUser(accounts, currentUser);
     const targetTransferUser = findAccountNumber(accounts, accNumber);
-    const checkTransferMoney = totalBalance >= Number(transferAmount);
+    const checkTransferMoney = calcTransferLimit(totalBalance, transferAmount);
     const checkDuplicateAcc = checkLoginUser.accountNumber !== accNumber;
 
     const allCheck =
@@ -44,7 +47,11 @@ const ActionContents = ({
     if (allCheck) {
       calcUpdatedMovements(checkLoginUser, -transferAmount);
       calcUpdatedMovements(targetTransferUser, transferAmount);
-      setCurrentUser({ ...currentUser, movements: checkLoginUser.movements });
+      setCurrentUser({
+        ...currentUser,
+        movements: checkLoginUser.movements,
+        totalInterest: checkLoginUser.totalInterest,
+      });
     }
 
     setTransferInfo({
@@ -58,15 +65,20 @@ const ActionContents = ({
   const requestLoan = (e) => {
     e.preventDefault();
 
-    if (!currentUser) return;
+    if (!currentUser || !loanAmount || !user) return;
 
-    const checkUser = currentUser.userId === user;
-    const checkLoan = Number(loanAmount);
+    const checkUser = currentUser.name === user;
+    const checkLoan = calcLoanLimit(loanAmount);
     const checkLoginUser = findLoginUser(accounts, currentUser);
 
     if (checkUser && checkLoan && checkLoginUser) {
       calcUpdatedMovements(checkLoginUser, checkLoan);
-      setCurrentUser({ ...currentUser, movements: checkLoginUser.movements });
+      calcInterest(checkLoginUser, checkLoan);
+      setCurrentUser({
+        ...currentUser,
+        movements: checkLoginUser.movements,
+        totalInterest: checkLoginUser.totalInterest,
+      });
     }
 
     setTransferInfo({
@@ -98,10 +110,10 @@ const ActionContents = ({
           />
         </Box>
         <Box>
-          <Text>송금 금액</Text>
+          <Text>이체금액</Text>
           <Input
             type="text"
-            placeholder="최대 100만원까지 송금 가능"
+            placeholder="한 번에 100만원 송금가능"
             maxLength="7"
             onChange={onChange}
             value={transferAmount}
@@ -112,7 +124,7 @@ const ActionContents = ({
       </Form>
 
       <Form onSubmit={requestLoan}>
-        <Title>대출</Title>
+        <Title>대출요청</Title>
         <Box>
           <Text>계좌명의</Text>
           <Input
@@ -125,10 +137,10 @@ const ActionContents = ({
           />
         </Box>
         <Box>
-          <Text>대출 금액</Text>
+          <Text>대출금액</Text>
           <Input
             type="text"
-            placeholder="최대 1000만원까지 대출 가능"
+            placeholder="한 번에 1000만원 대출 가능"
             maxLength="8"
             onChange={onChange}
             value={loanAmount}
@@ -139,7 +151,7 @@ const ActionContents = ({
       </Form>
 
       <Form onSubmit={closeAccount}>
-        <Title>회원탈퇴</Title>
+        <Title>계정폐쇄</Title>
         <Box>
           <Text>아이디</Text>
           <Input type="text" placeholder="아이디를 적어주세요" />
@@ -148,7 +160,7 @@ const ActionContents = ({
           <Text>비밀번호</Text>
           <Input type="text" placeholder="비밀번호를 적어주세요" />
         </Box>
-        <Button type="submit">계정삭제</Button>
+        <Button type="submit">회원탈퇴</Button>
       </Form>
     </>
   );

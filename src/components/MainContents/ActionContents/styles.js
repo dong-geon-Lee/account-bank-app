@@ -69,6 +69,7 @@ export const Input = styled.input`
 
   &::placeholder {
     font-size: 1.3rem;
+    letter-spacing: 1px;
   }
 `;
 

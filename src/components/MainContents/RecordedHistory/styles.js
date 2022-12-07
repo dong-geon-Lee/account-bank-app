@@ -14,7 +14,7 @@ export const Span = styled.span`
 export const Label = styled.label`
   font-size: 1.6rem;
   border-radius: 2rem;
-  padding: 0.4rem 1.8rem;
+  padding: 0.26rem 1.8rem;
   letter-spacing: 1px;
   color: #fff;
 

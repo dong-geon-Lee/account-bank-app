@@ -21,3 +21,22 @@ export const calcUpdatedMovements = (datas, transferAmount) => {
     price: Number(transferAmount),
   });
 };
+
+export const calcInterest = (datas, loanAmount) => {
+  datas.totalInterest += loanAmount * 0.05;
+};
+
+export const calcTransferLimit = (totalBalance, transferAmount) => {
+  const amount = Number(transferAmount);
+  return totalBalance >= amount && amount <= 1000000;
+};
+
+export const authUser = (accounts, userId, password) => {
+  return accounts.find(
+    (acc) => acc.userId === userId && acc.pin === Number(password)
+  );
+};
+
+export const calcLoanLimit = (loanAmount) => {
+  return Number(loanAmount) <= 10000000 ? Number(loanAmount) : 0;
+};

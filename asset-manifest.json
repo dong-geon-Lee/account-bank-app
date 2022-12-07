@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/account-book-app/static/js/main.bdd74ded.js",
+    "main.js": "/account-book-app/static/js/main.cff10191.js",
     "index.html": "/account-book-app/index.html",
-    "main.bdd74ded.js.map": "/account-book-app/static/js/main.bdd74ded.js.map"
+    "main.cff10191.js.map": "/account-book-app/static/js/main.cff10191.js.map"
   },
   "entrypoints": [
-    "static/js/main.bdd74ded.js"
+    "static/js/main.cff10191.js"
   ]
 }

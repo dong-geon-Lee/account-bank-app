@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Box, Button, Input, Form, Text, Title } from "./styles";
+import {
+  calcUpdatedMovements,
+  findAccountNumber,
+  findLoginUser,
+} from "../../../helper/calculates";
 
 const ActionContents = ({
   currentUser,
@@ -10,9 +15,11 @@ const ActionContents = ({
   const [transferInfo, setTransferInfo] = useState({
     accNumber: "",
     transferAmount: "",
+    loanAmount: "",
+    user: "",
   });
 
-  const { accNumber, transferAmount } = transferInfo;
+  const { accNumber, transferAmount, loanAmount, user } = transferInfo;
 
   const onChange = (e) => {
     setTransferInfo({ ...transferInfo, [e.target.name]: e.target.value });
@@ -23,36 +30,51 @@ const ActionContents = ({
 
     if (!currentUser) return;
 
-    const checkLoginUser = accounts.find(
-      (account) => account.userId === currentUser.userId
-    );
-
-    const targetTransferUser = accounts.find(
-      (account) => account.accountNumber === accNumber
-    );
-
+    const checkLoginUser = findLoginUser(accounts, currentUser);
+    const targetTransferUser = findAccountNumber(accounts, accNumber);
     const checkTransferMoney = totalBalance >= Number(transferAmount);
+    const checkDuplicateAcc = checkLoginUser.accountNumber !== accNumber;
 
-    if (checkLoginUser && targetTransferUser && checkTransferMoney) {
-      checkLoginUser.movements.unshift({
-        id: checkLoginUser.movements.length + 1,
-        price: Number(-transferAmount),
-      });
+    const allCheck =
+      checkLoginUser &&
+      targetTransferUser &&
+      checkTransferMoney &&
+      checkDuplicateAcc;
 
-      targetTransferUser.movements.push({
-        id: targetTransferUser.movements.length + 1,
-        price: Number(transferAmount),
-      });
-
-      console.log(accounts, "변형", checkLoginUser);
+    if (allCheck) {
+      calcUpdatedMovements(checkLoginUser, -transferAmount);
+      calcUpdatedMovements(targetTransferUser, transferAmount);
+      setCurrentUser({ ...currentUser, movements: checkLoginUser.movements });
     }
 
-    setTransferInfo({ accNumber: "", transferAmount: "" });
+    setTransferInfo({
+      accNumber: "",
+      transferAmount: "",
+      loanAmount: "",
+      user: "",
+    });
   };
 
   const requestLoan = (e) => {
     e.preventDefault();
-    console.log("대출완료");
+
+    if (!currentUser) return;
+
+    const checkUser = currentUser.userId === user;
+    const checkLoan = Number(loanAmount);
+    const checkLoginUser = findLoginUser(accounts, currentUser);
+
+    if (checkUser && checkLoan && checkLoginUser) {
+      calcUpdatedMovements(checkLoginUser, checkLoan);
+      setCurrentUser({ ...currentUser, movements: checkLoginUser.movements });
+    }
+
+    setTransferInfo({
+      accNumber: "",
+      transferAmount: "",
+      loanAmount: "",
+      user: "",
+    });
   };
 
   const closeAccount = (e) => {
@@ -93,7 +115,14 @@ const ActionContents = ({
         <Title>대출</Title>
         <Box>
           <Text>계좌명의</Text>
-          <Input type="text" placeholder="이름을 적어주세요" />
+          <Input
+            type="text"
+            placeholder="이름을 적어주세요"
+            maxLength="15"
+            onChange={onChange}
+            value={user}
+            name="user"
+          />
         </Box>
         <Box>
           <Text>대출 금액</Text>
@@ -101,6 +130,9 @@ const ActionContents = ({
             type="text"
             placeholder="최대 1000만원까지 대출 가능"
             maxLength="8"
+            onChange={onChange}
+            value={loanAmount}
+            name="loanAmount"
           />
         </Box>
         <Button type="submit">대출받기</Button>

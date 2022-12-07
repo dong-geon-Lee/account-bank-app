@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { calcSortedData } from "../../helper/calculates";
 import ActionContents from "./ActionContents/ActionContents";
 import RecordedHistory from "./RecordedHistory/RecordedHistory";
@@ -11,10 +11,6 @@ const MainContent = ({
   setCurrentUser,
 }) => {
   const items = currentUser ? calcSortedData(currentUser?.movements) : [];
-
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
 
   return (
     <Container>

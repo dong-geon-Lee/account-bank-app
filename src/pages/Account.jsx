@@ -3,7 +3,7 @@ import Balance from "../components/Balance/Balance";
 import Hedaer from "../components/Header/Hedaer";
 import MainContent from "../components/MainContents/MainContent";
 import { accounts } from "../data/fakeAccounts";
-import { calcTotalBalance, resetList } from "../helper/calculates";
+import { calcTotalBalance } from "../helper/calculates";
 import { Container, Wrapper } from "./styles";
 
 const Account = () => {
@@ -22,14 +22,16 @@ const Account = () => {
     setName(currentUser?.name);
     setAccNumber(currentUser?.accountNumber);
     setDates(currentUser?.createdDate);
-    // currentUser && setCurrentUser(resetList());
-  }, [currentUser]);
+    setCurrentUser(currentUser);
+  }, [currentUser, accounts]);
+
+  console.log(currentUser, "현재는??");
 
   return (
     <Container>
       <Hedaer
-        accounts={accounts}
         name={name}
+        accounts={accounts}
         setCurrentUser={setCurrentUser}
         setActiveUser={setActiveUser}
         setMessage={setMessage}

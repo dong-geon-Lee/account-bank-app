@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { authUser } from "../../helper/calculates";
+import { findCorrectUser } from "../../helper/calculates";
 import {
   Container,
   Description,
@@ -17,6 +17,7 @@ const Hedaer = ({
   setMessage,
   setCurrentUser,
   name,
+  setHidden,
 }) => {
   const [userInputs, setuserInputs] = useState({ userId: "", password: "" });
   const { userId, password } = userInputs;
@@ -29,7 +30,7 @@ const Hedaer = ({
   const displayLoginUser = (e) => {
     e.preventDefault();
 
-    if (!authUser(accounts, userId, password)) {
+    if (!findCorrectUser(accounts, userId, password)) {
       setActiveUser(false);
       setMessage("잘못된 유저 정보입니다");
       setuserInputs({ userId: "", password: "" });
@@ -38,7 +39,8 @@ const Hedaer = ({
     }
 
     setActiveUser(true);
-    setCurrentUser(authUser(accounts, userId, password));
+    setHidden(false);
+    setCurrentUser(findCorrectUser(accounts, userId, password));
     setuserInputs({ userId: "", password: "" });
     inputRef.current.blur();
   };

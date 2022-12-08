@@ -5,6 +5,7 @@ export const Div = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
+  border-bottom: 1.5px solid #eee;
 `;
 
 export const Span = styled.span`
@@ -14,7 +15,7 @@ export const Span = styled.span`
 export const Label = styled.label`
   font-size: 1.6rem;
   border-radius: 2rem;
-  padding: 0.26rem 1.8rem;
+  padding: 0.26rem 1.2rem;
   letter-spacing: 1px;
   color: #fff;
 

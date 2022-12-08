@@ -16,6 +16,7 @@ const Account = () => {
   const [accNumber, setAccNumber] = useState("");
   const [dates, setDates] = useState(null);
   const [totalInterest, setTotalInterest] = useState(0);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
@@ -37,9 +38,10 @@ const Account = () => {
         setCurrentUser={setCurrentUser}
         setActiveUser={setActiveUser}
         setMessage={setMessage}
+        setHidden={setHidden}
       />
       {activeUser ? (
-        <Wrapper>
+        <Wrapper hidden={hidden}>
           <Balance
             totalBalance={totalBalance}
             bankName={bankName}
@@ -51,6 +53,7 @@ const Account = () => {
             accounts={accounts}
             totalBalance={totalBalance}
             setCurrentUser={setCurrentUser}
+            setHidden={setHidden}
           />
         </Wrapper>
       ) : (

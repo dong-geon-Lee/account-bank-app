@@ -9,6 +9,7 @@ const MainContent = ({
   accounts,
   totalBalance,
   setCurrentUser,
+  setHidden,
 }) => {
   const items = currentUser ? calcSortedData(currentUser?.movements) : [];
 
@@ -27,6 +28,7 @@ const MainContent = ({
             accounts={accounts}
             totalBalance={totalBalance}
             setCurrentUser={setCurrentUser}
+            setHidden={setHidden}
           />
         </RightSide>
       </Wrapper>

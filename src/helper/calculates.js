@@ -31,7 +31,7 @@ export const calcTransferLimit = (totalBalance, transferAmount) => {
   return totalBalance >= amount && amount <= 1000000;
 };
 
-export const authUser = (accounts, userId, password) => {
+export const findCorrectUser = (accounts, userId, password) => {
   return accounts.find(
     (acc) => acc.userId === userId && acc.pin === Number(password)
   );
@@ -39,4 +39,12 @@ export const authUser = (accounts, userId, password) => {
 
 export const calcLoanLimit = (loanAmount) => {
   return Number(loanAmount) <= 10000000 ? Number(loanAmount) : 0;
+};
+
+export const authUser = (loginUser, userId, password) => {
+  return loginUser?.userId === userId && loginUser?.pin === Number(password);
+};
+
+export const calcUserIndex = (accounts, loginUser) => {
+  return accounts.findIndex((account) => account.userId === loginUser.userId);
 };

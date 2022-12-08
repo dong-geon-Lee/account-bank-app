@@ -1,9 +1,28 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from{
+    opacity: 0;
+  } 
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 
 export const Form = styled.form`
   background-image: linear-gradient(to top left, #ffb003, #ffcb03);
   border-radius: 1.6rem;
   padding: 1.6rem 2rem;
+  transition: all 0.4s ease;
 
   & + form {
     background-image: linear-gradient(to top left, #39b385, #9be15d);
@@ -94,5 +113,18 @@ export const Button = styled.button`
   &:hover {
     background-color: #e7f5ff;
     opacity: 0.9;
+  }
+`;
+
+export const Message = styled.p`
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-align: center;
+  color: #f8f9fa;
+  background-color: #ff0022;
+  animation: ${fadeIn} 0.3s ease-in-out;
+
+  &.success {
+    background-color: #37b24d;
   }
 `;

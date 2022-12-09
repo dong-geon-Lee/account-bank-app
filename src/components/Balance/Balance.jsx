@@ -10,16 +10,17 @@ import {
   Strong,
 } from "./styles";
 
-const Balance = ({ totalBalance, bankName, accNumber, dates }) => {
+const Balance = ({ totalBalance, bankName, accNumber, dates, name }) => {
   return (
     <Container>
       <Section>
         <TextBox>
           <Label>
-            현재 계좌: <Strong>{bankName}</Strong>
+            현재계좌: <Strong>{bankName}</Strong>
           </Label>
-          <Span>계좌 번호: {accNumber}</Span>
-          <Span>계좌 개설: {formattedDates(dates)}</Span>
+          <Span>계좌명의: {name}</Span>
+          <Span>계좌번호: {accNumber}</Span>
+          <Span>계좌개설: {formattedDates(dates)}</Span>
         </TextBox>
         <Text>{formattedTotal(totalBalance)}원</Text>
       </Section>

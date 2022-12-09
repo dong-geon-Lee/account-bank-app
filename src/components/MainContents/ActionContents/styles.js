@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   from{
@@ -6,15 +6,6 @@ const fadeIn = keyframes`
   } 
   to {
     opacity: 1;
-  }
-`;
-
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
   }
 `;
 

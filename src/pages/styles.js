@@ -25,17 +25,4 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   opacity: ${(props) => (props.hidden ? 0 : 1)};
   animation: ${(props) => !props.hidden && fadeIn} 1.2s linear;
-
-  /* ${(props) =>
-    props.hidden
-      ? css`
-          animation: ${fadeOut} 1.2s linear;
-        `
-      : css`
-          animation: ${fadeIn} 1.2s linear;
-        `} */
-  /* 
-  visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
-  animation: ${(props) => (props.hidden ? fadeOut : fadeIn)} 1s linear;
-  transition: visibility 1s linear; */
 `;

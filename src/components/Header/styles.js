@@ -11,11 +11,12 @@ export const Container = styled.header`
 export const Description = styled.h2`
   font-size: 2.4rem;
   font-weight: 600;
-  flex: 0.5;
 `;
 
 export const Div = styled.div`
-  flex: 0.25;
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
 `;
 
 export const LogoImg = styled.img`
@@ -27,7 +28,7 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 0.35;
+  /* flex: 0.35; */
 `;
 
 export const Input = styled.input`

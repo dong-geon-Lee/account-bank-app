@@ -17,6 +17,8 @@ const ActionContents = ({
   totalBalance,
   setCurrentUser,
   setHidden,
+  setActiveUser,
+  setMessage,
 }) => {
   const [transferInfo, setTransferInfo] = useState({
     accNumber: "",
@@ -39,7 +41,6 @@ const ActionContents = ({
 
   const [accountInputError, setAccountInputError] = useState(false);
   const [errMessageAccount, setErrMessageAccount] = useState("");
-  const [activeMessage, setActiveMessage] = useState(false);
 
   const { accNumber, transferAmount, loanAmount, user, userId, password } =
     transferInfo;
@@ -249,6 +250,8 @@ const ActionContents = ({
       const index = calcUserIndex(accounts, checkLoginUser);
       accounts.splice(index, 1);
       setHidden(true);
+      setActiveUser(false);
+      setMessage(`${currentUser.userId} 계정이 삭제되었습니다`);
     }
 
     setAccountInputError(false);
@@ -289,15 +292,9 @@ const ActionContents = ({
             name="transferAmount"
           />
         </Box>
-        {transferInputError && (
-          <Message transferInputError={transferInputError}>
-            {errMessageTransfer}
-          </Message>
-        )}
+        {transferInputError && <Message>{errMessageTransfer}</Message>}
         {sucessTransferSubmit && (
-          <Message className="success" active={activeMessage}>
-            {successTransferMessage}
-          </Message>
+          <Message className="success">{successTransferMessage}</Message>
         )}
         <Button type="submit">이체하기</Button>
       </Form>

@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Balance from "../components/Balance/Balance";
+import Footer from "../components/Footer/Footer";
 import Hedaer from "../components/Header/Hedaer";
 import MainContent from "../components/MainContents/MainContent";
 import { accounts } from "../data/fakeAccounts";
-import { calcTotalBalance } from "../helper/calculates";
 import { Container, Wrapper } from "./styles";
+import {
+  calcDeposit,
+  calcTotalBalance,
+  calcWithDrawal,
+} from "../helper/calculates";
+import FakeAuthUser from "../components/FakeAuthUser/FakeAuthUser";
 
 const Account = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [activeUser, setActiveUser] = useState(false);
-  const [message, setMessage] = useState("로그인 해주세요");
+  const [message, setMessage] = useState("");
   const [totalBalance, setTotalBalance] = useState(0);
   const [bankName, setBankName] = useState("");
   const [name, setName] = useState("");
   const [accNumber, setAccNumber] = useState("");
   const [dates, setDates] = useState(null);
-  const [totalInterest, setTotalInterest] = useState(0);
   const [hidden, setHidden] = useState(false);
+  const [totalDeposit, setTotalDeposit] = useState(0);
+  const [totalWithDrawal, settotalWithDrawal] = useState(0);
+  const [totalInterest, setTotalInterest] = useState(0);
+  const [sortActive, setSortActive] = useState(false);
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
@@ -24,11 +33,12 @@ const Account = () => {
     setName(currentUser?.name);
     setAccNumber(currentUser?.accountNumber);
     setDates(currentUser?.createdDate);
+    setTotalDeposit(calcDeposit(currentUser?.movements));
+    settotalWithDrawal(calcWithDrawal(currentUser?.movements));
     setTotalInterest(currentUser?.totalInterest);
   }, [currentUser]);
 
   console.log(currentUser);
-  console.log(totalInterest);
 
   return (
     <Container>
@@ -39,7 +49,9 @@ const Account = () => {
         setActiveUser={setActiveUser}
         setMessage={setMessage}
         setHidden={setHidden}
+        activeUser={activeUser}
       />
+
       {activeUser ? (
         <Wrapper hidden={hidden}>
           <Balance
@@ -47,17 +59,36 @@ const Account = () => {
             bankName={bankName}
             accNumber={accNumber}
             dates={dates}
-          ></Balance>
+            name={name}
+          />
           <MainContent
             currentUser={currentUser}
             accounts={accounts}
             totalBalance={totalBalance}
             setCurrentUser={setCurrentUser}
             setHidden={setHidden}
+            sortActive={sortActive}
+            setActiveUser={setActiveUser}
+            setMessage={setMessage}
+          />
+          <Footer
+            totalDeposit={totalDeposit}
+            totalWithDrawal={totalWithDrawal}
+            totalBalance={totalBalance}
+            totalInterest={totalInterest}
+            sortActive={sortActive}
+            setSortActive={setSortActive}
           />
         </Wrapper>
       ) : (
-        <h1>{message}</h1>
+        <FakeAuthUser
+          message={message}
+          setMessage={setMessage}
+          accounts={accounts}
+          setActiveUser={setActiveUser}
+          setCurrentUser={setCurrentUser}
+          setHidden={setHidden}
+        />
       )}
     </Container>
   );

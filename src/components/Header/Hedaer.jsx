@@ -18,6 +18,7 @@ const Hedaer = ({
   setCurrentUser,
   name,
   setHidden,
+  activeUser,
 }) => {
   const [userInputs, setuserInputs] = useState({ userId: "", password: "" });
   const { userId, password } = userInputs;
@@ -32,7 +33,7 @@ const Hedaer = ({
 
     if (!findCorrectUser(accounts, userId, password)) {
       setActiveUser(false);
-      setMessage("잘못된 유저 정보입니다");
+      setMessage("로그아웃 완료!");
       setuserInputs({ userId: "", password: "" });
       inputRef.current.blur();
       return;
@@ -47,15 +48,14 @@ const Hedaer = ({
 
   return (
     <Container>
-      <Description>
-        {name ? `환영합니다! ${name}님` : "시작하려면 로그인하세요"}
-      </Description>
-
       <Div>
         <LogoImg
           src={`${process.env.PUBLIC_URL}/assets/logo.png`}
           alt="logo-image"
         ></LogoImg>
+        <Description>
+          {activeUser && name ? `환영합니다! ${name}님` : ""}
+        </Description>
       </Div>
 
       <Form onSubmit={displayLoginUser}>
@@ -67,6 +67,7 @@ const Hedaer = ({
           onChange={onChange}
           ref={inputRef}
         />
+
         <Input
           type="password"
           placeholder="비밀번호"
@@ -75,6 +76,7 @@ const Hedaer = ({
           onChange={onChange}
           ref={inputRef}
         />
+
         <Button type="submit">
           <ArrowIcons />
         </Button>

@@ -10,8 +10,13 @@ const MainContent = ({
   totalBalance,
   setCurrentUser,
   setHidden,
+  sortActive,
+  setActiveUser,
+  setMessage,
 }) => {
-  const items = currentUser ? calcSortedData(currentUser?.movements) : [];
+  const items = currentUser
+    ? calcSortedData(currentUser?.movements, sortActive)
+    : [];
 
   return (
     <Container>
@@ -29,6 +34,8 @@ const MainContent = ({
             totalBalance={totalBalance}
             setCurrentUser={setCurrentUser}
             setHidden={setHidden}
+            setActiveUser={setActiveUser}
+            setMessage={setMessage}
           />
         </RightSide>
       </Wrapper>

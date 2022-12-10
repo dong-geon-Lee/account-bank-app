@@ -14,6 +14,7 @@ export const Form = styled.form`
   border-radius: 1.6rem;
   padding: 1.6rem 2rem;
   transition: all 0.4s ease;
+  user-select: none;
 
   & + form {
     background-image: linear-gradient(to top left, #39b385, #9be15d);

@@ -6,6 +6,7 @@ export const Div = styled.div`
   align-items: center;
   padding: 2rem;
   border-bottom: 1.5px solid #eee;
+  user-select: none;
 `;
 
 export const Span = styled.span`
@@ -13,9 +14,9 @@ export const Span = styled.span`
 `;
 
 export const Label = styled.label`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   border-radius: 2rem;
-  padding: 0.26rem 1.2rem;
+  padding: 0.4rem 1.2rem;
   letter-spacing: 1px;
   color: #fff;
 

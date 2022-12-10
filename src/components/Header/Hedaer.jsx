@@ -16,34 +16,40 @@ const Hedaer = ({
   setActiveUser,
   setMessage,
   setCurrentUser,
-  name,
   setHidden,
+  name,
+  userId,
   activeUser,
 }) => {
-  const [userInputs, setuserInputs] = useState({ userId: "", password: "" });
-  const { userId, password } = userInputs;
-  const inputRef = useRef();
+  // const [userInputs, setuserInputs] = useState({ userId: "", password: "" });
+  // const { userId, password } = userInputs;
+  // const inputRef = useRef();
 
-  const onChange = (e) => {
-    setuserInputs({ ...userInputs, [e.target.name]: e.target.value });
-  };
+  // const onChange = (e) => {
+  //   setuserInputs({ ...userInputs, [e.target.name]: e.target.value });
+  // };
 
-  const displayLoginUser = (e) => {
-    e.preventDefault();
+  // const displayLoginUser = (e) => {
+  //   e.preventDefault();
 
-    if (!findCorrectUser(accounts, userId, password)) {
-      setActiveUser(false);
-      setMessage("로그아웃 완료!");
-      setuserInputs({ userId: "", password: "" });
-      inputRef.current.blur();
-      return;
-    }
+  //   if (!findCorrectUser(accounts, userId, password)) {
+  //     setActiveUser(false);
+  //     setMessage("로그아웃 완료!");
+  //     setuserInputs({ userId: "", password: "" });
+  //     inputRef.current.blur();
+  //     return;
+  //   }
 
-    setActiveUser(true);
-    setHidden(false);
-    setCurrentUser(findCorrectUser(accounts, userId, password));
-    setuserInputs({ userId: "", password: "" });
-    inputRef.current.blur();
+  //   setActiveUser(true);
+  //   setHidden(false);
+  //   setCurrentUser(findCorrectUser(accounts, userId, password));
+  //   setuserInputs({ userId: "", password: "" });
+  //   inputRef.current.blur();
+  // };
+
+  const handleLogout = () => {
+    setActiveUser(false);
+    setMessage(`${userId}님 로그아웃 완료!`);
   };
 
   return (
@@ -58,29 +64,35 @@ const Hedaer = ({
         </Description>
       </Div>
 
-      <Form onSubmit={displayLoginUser}>
-        <Input
-          type="text"
-          placeholder="아이디"
-          name="userId"
-          value={userId}
-          onChange={onChange}
-          ref={inputRef}
-        />
+      {activeUser && (
+        // <Form onSubmit={displayLoginUser}>
+        //   <Input
+        //     type="text"
+        //     placeholder="아이디"
+        //     name="userId"
+        //     value={userId}
+        //     onChange={onChange}
+        //     ref={inputRef}
+        //   />
 
-        <Input
-          type="password"
-          placeholder="비밀번호"
-          name="password"
-          value={password}
-          onChange={onChange}
-          ref={inputRef}
-        />
+        //   <Input
+        //     type="password"
+        //     placeholder="비밀번호"
+        //     name="password"
+        //     value={password}
+        //     onChange={onChange}
+        //     ref={inputRef}
+        //   />
 
-        <Button type="submit">
-          <ArrowIcons />
-        </Button>
-      </Form>
+        //   <Button type="submit">
+        //     <ArrowIcons />
+        //   </Button>
+        // </Form>
+        <Div>
+          <Button>계좌목록</Button>
+          <Button onClick={handleLogout}>로그아웃</Button>
+        </Div>
+      )}
     </Container>
   );
 };

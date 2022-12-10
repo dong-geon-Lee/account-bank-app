@@ -65,4 +65,7 @@ export const Button = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  font-size: 2.4rem;
+  font-weight: 600;
+  font-family: inherit;
 `;

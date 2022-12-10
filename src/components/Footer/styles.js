@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 1.2rem;
+  user-select: none;
 `;
 
 export const LeftSide = styled.section`

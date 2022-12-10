@@ -5,12 +5,13 @@ import Hedaer from "../components/Header/Hedaer";
 import MainContent from "../components/MainContents/MainContent";
 import { accounts } from "../data/fakeAccounts";
 import { Container, Wrapper } from "./styles";
+import FakeAuthUser from "../components/FakeAuthUser/FakeAuthUser";
+import FakeAccount from "../components/FakeAccount/FakeAccount";
 import {
   calcDeposit,
   calcTotalBalance,
   calcWithDrawal,
 } from "../helper/calculates";
-import FakeAuthUser from "../components/FakeAuthUser/FakeAuthUser";
 
 const Account = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -26,11 +27,13 @@ const Account = () => {
   const [totalWithDrawal, settotalWithDrawal] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
   const [sortActive, setSortActive] = useState(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
     setBankName(currentUser?.bankAccount);
     setName(currentUser?.name);
+    setUserId(currentUser?.userId);
     setAccNumber(currentUser?.accountNumber);
     setDates(currentUser?.createdDate);
     setTotalDeposit(calcDeposit(currentUser?.movements));
@@ -42,44 +45,47 @@ const Account = () => {
 
   return (
     <Container>
-      <Hedaer
-        name={name}
-        accounts={accounts}
-        setCurrentUser={setCurrentUser}
-        setActiveUser={setActiveUser}
-        setMessage={setMessage}
-        setHidden={setHidden}
-        activeUser={activeUser}
-      />
-
       {activeUser ? (
-        <Wrapper hidden={hidden}>
-          <Balance
-            totalBalance={totalBalance}
-            bankName={bankName}
-            accNumber={accNumber}
-            dates={dates}
+        <>
+          <Hedaer
             name={name}
-          />
-          <MainContent
-            currentUser={currentUser}
+            userId={userId}
             accounts={accounts}
-            totalBalance={totalBalance}
             setCurrentUser={setCurrentUser}
-            setHidden={setHidden}
-            sortActive={sortActive}
             setActiveUser={setActiveUser}
             setMessage={setMessage}
+            setHidden={setHidden}
+            activeUser={activeUser}
           />
-          <Footer
-            totalDeposit={totalDeposit}
-            totalWithDrawal={totalWithDrawal}
-            totalBalance={totalBalance}
-            totalInterest={totalInterest}
-            sortActive={sortActive}
-            setSortActive={setSortActive}
-          />
-        </Wrapper>
+          <Wrapper hidden={hidden}>
+            <Balance
+              totalBalance={totalBalance}
+              bankName={bankName}
+              accNumber={accNumber}
+              dates={dates}
+              name={name}
+            />
+            <MainContent
+              currentUser={currentUser}
+              accounts={accounts}
+              totalBalance={totalBalance}
+              setCurrentUser={setCurrentUser}
+              setHidden={setHidden}
+              sortActive={sortActive}
+              setActiveUser={setActiveUser}
+              setMessage={setMessage}
+            />
+            <Footer
+              totalDeposit={totalDeposit}
+              totalWithDrawal={totalWithDrawal}
+              totalBalance={totalBalance}
+              totalInterest={totalInterest}
+              sortActive={sortActive}
+              setSortActive={setSortActive}
+            />
+            <FakeAccount />
+          </Wrapper>
+        </>
       ) : (
         <FakeAuthUser
           message={message}

@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #f3f3f3;
     line-height: 1.5;
     overflow: hidden;
+    position: relative;
   }
 `;
 

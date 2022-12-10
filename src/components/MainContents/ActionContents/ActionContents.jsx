@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Input, Form, Text, Title, Message } from "./styles";
 import {
   authUser,
@@ -31,11 +31,13 @@ const ActionContents = ({
 
   const [successTransferMessage, setSuccessTransferMessage] = useState("");
   const [sucessTransferSubmit, setSucessTransferSubmit] = useState(false);
+  const [sucessTransferCounter, setSucessTransferCounter] = useState(0);
   const [transferInputError, setTransferInputError] = useState(false);
   const [errMessageTransfer, setErrMessageTransfer] = useState("");
 
   const [successLoanMessage, setSuccessLoanMessage] = useState("");
   const [sucessLoanSubmit, setSucessLoanSubmit] = useState(false);
+  const [sucessLoanCounter, setSucessLoanCounter] = useState(0);
   const [loanInputError, setLoanInputError] = useState(false);
   const [errMessageLoan, setErrMessageLoan] = useState("");
 
@@ -55,10 +57,6 @@ const ActionContents = ({
     function conditionStatement(message, boolean) {
       setErrMessageTransfer(message);
       setTransferInputError(boolean);
-
-      setTimeout(() => {
-        setTransferInputError(!boolean);
-      }, 5000);
     }
 
     if (!accNumber && !transferAmount) {
@@ -117,12 +115,13 @@ const ActionContents = ({
         movements: checkLoginUser.movements,
         totalInterest: checkLoginUser.totalInterest,
       });
+
       setSuccessTransferMessage("계좌이체가 완료되었습니다!");
       setSucessTransferSubmit(true);
-
-      setTimeout(() => {
-        setSucessTransferSubmit(false);
-      }, 5000);
+      setSucessTransferCounter((prev) => prev + 1);
+      // setTimeout(() => {
+      //   setSucessTransferSubmit(false);
+      // }, 5000);
     }
 
     setTransferInputError(false);
@@ -143,10 +142,6 @@ const ActionContents = ({
     function conditionStatement(message, boolean) {
       setErrMessageLoan(message);
       setLoanInputError(boolean);
-
-      setTimeout(() => {
-        setLoanInputError(!boolean);
-      }, 5000);
     }
 
     if (!loanAmount && !user) {
@@ -165,7 +160,10 @@ const ActionContents = ({
       const loginUser = findLoginUser(accounts, currentUser);
 
       if (loginUser.name !== user) {
-        conditionStatement("잘못된 계좌명의 입니다!", true);
+        conditionStatement(
+          "잘못된 계좌명의 입니다. 본인명의로 입력해주세요!",
+          true
+        );
         return;
       }
 
@@ -190,9 +188,7 @@ const ActionContents = ({
 
       setSuccessLoanMessage("대출요청이 처리되었습니다! 계좌를 확인하세요!");
       setSucessLoanSubmit(true);
-      setTimeout(() => {
-        setSucessLoanSubmit(false);
-      }, 5000);
+      setSucessLoanCounter((prev) => prev + 1);
     }
 
     setLoanInputError(false);
@@ -213,10 +209,6 @@ const ActionContents = ({
     function conditionStatement(message, boolean) {
       setErrMessageAccount(message);
       setAccountInputError(boolean);
-
-      setTimeout(() => {
-        setAccountInputError(!boolean);
-      }, 5000);
     }
 
     if (!userId && !password) {
@@ -265,6 +257,32 @@ const ActionContents = ({
       password: "",
     });
   };
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setTransferInputError(false);
+      setSucessTransferSubmit(false);
+    }, 5000);
+
+    return () => clearTimeout(timerId);
+  }, [errMessageTransfer, sucessTransferCounter]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setLoanInputError(false);
+      setSucessLoanSubmit(false);
+    }, 5000);
+
+    return () => clearTimeout(timerId);
+  }, [errMessageLoan, sucessLoanCounter]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setAccountInputError(false);
+    }, 5000);
+
+    return () => clearTimeout(timerId);
+  }, [errMessageAccount]);
 
   return (
     <>

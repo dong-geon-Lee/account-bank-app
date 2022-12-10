@@ -35,7 +35,6 @@ const FakeAuthUser = ({
 
   const handleGuestAuth = (e) => {
     e.preventDefault();
-    userId.current.focus();
 
     const userIdValue = userId.current.value;
     const pinValue = Number(pin.current.value);
@@ -44,10 +43,6 @@ const FakeAuthUser = ({
     function conditionStatement(message, boolean) {
       setErrMessageAccount(message);
       setAccountInputError(boolean);
-
-      setTimeout(() => {
-        setAccountInputError(!boolean);
-      }, 5000);
     }
 
     function validationAuth() {
@@ -81,15 +76,28 @@ const FakeAuthUser = ({
       setCurrentUser(selectedAccUser);
       setActiveUser(true);
       setHidden(false);
+
       userId.current.value = "";
       pin.current.value = "";
     }
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setMessage(false);
+    const timerId = setTimeout(() => {
+      setAccountInputError(false);
     }, 5000);
+
+    return () => clearTimeout(timerId);
+  }, [errMessageAccount]);
+
+  useEffect(() => {
+    let timerId = setTimeout(() => {
+      setMessage(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [message]);
 
   return (

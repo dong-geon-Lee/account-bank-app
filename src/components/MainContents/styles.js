@@ -5,7 +5,7 @@ export const Container = styled.div``;
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  height: 70rem;
+  height: 64rem;
   gap: 2rem;
 `;
 

@@ -33,6 +33,8 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     overflow: hidden;
     position: relative;
+    width: 100vw;
+    height: 100vh;
   }
 `;
 

@@ -6,12 +6,13 @@ import MainContent from "../components/MainContents/MainContent";
 import { accounts } from "../data/fakeAccounts";
 import { Container, Wrapper } from "./styles";
 import FakeAuthUser from "../components/FakeAuthUser/FakeAuthUser";
-import FakeAccount from "../components/FakeAccount/FakeAccount";
+import Modals from "../components/Modals/Modals";
 import {
   calcDeposit,
   calcTotalBalance,
   calcWithDrawal,
 } from "../helper/calculates";
+import Overlays from "../components/Modals/Overlays/Overlays";
 
 const Account = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -28,6 +29,8 @@ const Account = () => {
   const [totalInterest, setTotalInterest] = useState(0);
   const [sortActive, setSortActive] = useState(false);
   const [userId, setUserId] = useState("");
+  const [showModals, setShowModals] = useState(false);
+  const [overlays, setOverlays] = useState(false);
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
@@ -56,6 +59,8 @@ const Account = () => {
             setMessage={setMessage}
             setHidden={setHidden}
             activeUser={activeUser}
+            setShowModals={setShowModals}
+            setOverlays={setOverlays}
           />
           <Wrapper hidden={hidden}>
             <Balance
@@ -83,7 +88,21 @@ const Account = () => {
               sortActive={sortActive}
               setSortActive={setSortActive}
             />
-            <FakeAccount />
+            {showModals && overlays && (
+              <>
+                <Overlays
+                  accounts={accounts}
+                  setShowModals={setShowModals}
+                  setOverlays={setOverlays}
+                />
+                <Modals
+                  accounts={accounts}
+                  currentUser={currentUser}
+                  setShowModals={setShowModals}
+                  setOverlays={setOverlays}
+                />
+              </>
+            )}
           </Wrapper>
         </>
       ) : (

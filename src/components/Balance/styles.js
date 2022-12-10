@@ -15,16 +15,11 @@ export const TextBox = styled.div`
   flex-direction: column;
 `;
 
-export const Label = styled.label`
-  font-size: 2.6rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-`;
-
 export const Span = styled.span`
   font-size: 2rem;
-  letter-spacing: 1px;
-  color: #444;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: #000;
 `;
 
 export const Text = styled.p`
@@ -32,5 +27,5 @@ export const Text = styled.p`
 `;
 
 export const Strong = styled.strong`
-  font-family: inherit;
+  font-weight: 700;
 `;

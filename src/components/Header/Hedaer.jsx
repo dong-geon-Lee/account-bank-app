@@ -1,95 +1,37 @@
-import React, { useRef, useState } from "react";
-import { findCorrectUser } from "../../helper/calculates";
-import {
-  Container,
-  Description,
-  Div,
-  LogoImg,
-  Form,
-  Input,
-  Button,
-  ArrowIcons,
-} from "./styles";
+import React from "react";
+import { Container, Description, Div, Button, Logo } from "./styles";
 
 const Hedaer = ({
-  accounts,
   setActiveUser,
   setMessage,
-  setCurrentUser,
-  setHidden,
-  name,
   userId,
   activeUser,
+  setShowModals,
+  setOverlays,
 }) => {
-  // const [userInputs, setuserInputs] = useState({ userId: "", password: "" });
-  // const { userId, password } = userInputs;
-  // const inputRef = useRef();
-
-  // const onChange = (e) => {
-  //   setuserInputs({ ...userInputs, [e.target.name]: e.target.value });
-  // };
-
-  // const displayLoginUser = (e) => {
-  //   e.preventDefault();
-
-  //   if (!findCorrectUser(accounts, userId, password)) {
-  //     setActiveUser(false);
-  //     setMessage("로그아웃 완료!");
-  //     setuserInputs({ userId: "", password: "" });
-  //     inputRef.current.blur();
-  //     return;
-  //   }
-
-  //   setActiveUser(true);
-  //   setHidden(false);
-  //   setCurrentUser(findCorrectUser(accounts, userId, password));
-  //   setuserInputs({ userId: "", password: "" });
-  //   inputRef.current.blur();
-  // };
-
   const handleLogout = () => {
     setActiveUser(false);
     setMessage(`${userId}님 로그아웃 완료!`);
   };
 
+  const handleModals = () => {
+    setShowModals(true);
+    setOverlays(true);
+  };
+
   return (
     <Container>
       <Div>
-        <LogoImg
-          src={`${process.env.PUBLIC_URL}/assets/logo.png`}
-          alt="logo-image"
-        ></LogoImg>
+        <Logo />
+
         <Description>
-          {activeUser && name ? `환영합니다! ${name}님` : ""}
+          {activeUser && userId ? `환영합니다! ${userId} 님.` : ""}
         </Description>
       </Div>
 
       {activeUser && (
-        // <Form onSubmit={displayLoginUser}>
-        //   <Input
-        //     type="text"
-        //     placeholder="아이디"
-        //     name="userId"
-        //     value={userId}
-        //     onChange={onChange}
-        //     ref={inputRef}
-        //   />
-
-        //   <Input
-        //     type="password"
-        //     placeholder="비밀번호"
-        //     name="password"
-        //     value={password}
-        //     onChange={onChange}
-        //     ref={inputRef}
-        //   />
-
-        //   <Button type="submit">
-        //     <ArrowIcons />
-        //   </Button>
-        // </Form>
         <Div>
-          <Button>계좌목록</Button>
+          <Button onClick={() => handleModals()}>계좌목록</Button>
           <Button onClick={handleLogout}>로그아웃</Button>
         </Div>
       )}

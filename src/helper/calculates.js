@@ -66,3 +66,7 @@ export const calcUserIndex = (accounts, loginUser) => {
 export const calcRandomNumber = (accounts) => {
   return Math.floor(Math.random() * accounts.length);
 };
+
+export const calcFilterUser = (accounts, currentUser) => {
+  return accounts.filter((account) => account.userId !== currentUser.userId);
+};

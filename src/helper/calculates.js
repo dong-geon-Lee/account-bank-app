@@ -59,6 +59,12 @@ export const authUser = (loginUser, userId, password) => {
   return loginUser?.userId === userId && loginUser?.pin === Number(password);
 };
 
+export const guestAuthUser = (accounts, userId, password) => {
+  return accounts.find(
+    (account) => account.userId === userId && account.pin === Number(password)
+  );
+};
+
 export const calcUserIndex = (accounts, loginUser) => {
   return accounts.findIndex((account) => account.userId === loginUser.userId);
 };

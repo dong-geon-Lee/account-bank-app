@@ -31,7 +31,7 @@ const Hedaer = ({
 
       {activeUser && (
         <Div>
-          <Button onClick={() => handleModals()}>계좌목록</Button>
+          <Button onClick={() => handleModals()}>회원정보</Button>
           <Button onClick={handleLogout}>로그아웃</Button>
         </Div>
       )}

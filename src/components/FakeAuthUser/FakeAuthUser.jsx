@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { authUser, calcRandomNumber } from "../../helper/calculates";
+import {
+  authUser,
+  calcRandomNumber,
+  guestAuthUser,
+} from "../../helper/calculates";
 import {
   Box,
   Button,
@@ -22,7 +26,6 @@ const FakeAuthUser = ({
   setActiveUser,
   setCurrentUser,
   setHidden,
-  setMessage,
 }) => {
   const [errMessageAccount, setErrMessageAccount] = useState("");
   const [accountInputError, setAccountInputError] = useState(false);
@@ -37,8 +40,9 @@ const FakeAuthUser = ({
     e.preventDefault();
 
     const userIdValue = userId.current.value;
-    const pinValue = Number(pin.current.value);
+    const pinValue = pin.current.value;
     const checkAuthUser = authUser(selectedAccUser, userIdValue, pinValue);
+    const checkAuthGuest = guestAuthUser(accounts, userIdValue, pinValue);
 
     function conditionStatement(message, boolean) {
       setErrMessageAccount(message);
@@ -59,11 +63,17 @@ const FakeAuthUser = ({
       }
 
       if (userIdValue && pinValue) {
-        if (selectedAccUser.userId !== userIdValue) {
+        if (
+          selectedAccUser?.userId !== userIdValue &&
+          checkAuthGuest?.userId !== userIdValue
+        ) {
           conditionStatement("잘못된 아이디입니다!", true);
           return;
         }
-        if (selectedAccUser.pin !== pinValue) {
+        if (
+          selectedAccUser?.pin !== pinValue &&
+          checkAuthGuest?.pin !== pinValue
+        ) {
           conditionStatement("잘못된 비밀번호입니다!", true);
           return;
         }
@@ -72,8 +82,8 @@ const FakeAuthUser = ({
 
     validationAuth();
 
-    if (checkAuthUser) {
-      setCurrentUser(selectedAccUser);
+    if (checkAuthUser || checkAuthGuest) {
+      setCurrentUser(checkAuthUser ? selectedAccUser : checkAuthGuest);
       setActiveUser(true);
       setHidden(false);
 
@@ -90,16 +100,6 @@ const FakeAuthUser = ({
     return () => clearTimeout(timerId);
   }, [errMessageAccount]);
 
-  useEffect(() => {
-    let timerId = setTimeout(() => {
-      setMessage(false);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [message]);
-
   return (
     <Container>
       <Wrapper onSubmit={handleGuestAuth}>
@@ -109,9 +109,8 @@ const FakeAuthUser = ({
               <Message>{message}</Message>
             </MsgBox>
           ) : (
-            <Message>게스트 계정으로 로그인해주세요.</Message>
+            <Message>게스트 계정으로 로그인해주세요</Message>
           )}
-
           <Box>
             <Div>
               <Label>아이디</Label>
@@ -132,7 +131,7 @@ const FakeAuthUser = ({
           <Input type="password" placeholder="guest 비밀번호 입력" ref={pin} />
         </InputBox>
         {accountInputError && <Text>{errMessageAccount}</Text>}
-        <Button>제출하기</Button>
+        <Button>로그인</Button>
       </Wrapper>
     </Container>
   );

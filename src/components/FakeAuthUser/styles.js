@@ -10,8 +10,9 @@ const fadeIn = keyframes`
 `;
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const Wrapper = styled.form`
@@ -21,8 +22,11 @@ export const Wrapper = styled.form`
   align-items: center;
   background-color: beige;
   width: 50rem;
-  height: 50rem;
-  margin: 15rem auto;
+  height: 54rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
   padding: 0 4rem;
 `;
 
@@ -81,15 +85,17 @@ export const Span = styled.span`
 export const Br = styled.br``;
 
 export const Button = styled.button`
-  width: 40%;
+  width: 80%;
   padding: 2rem;
   display: inline-block;
   border: none;
   font-family: inherit;
-  font-size: 1.6rem;
+  font-size: 2rem;
+  font-weight: 800;
   margin: 3rem 0 0 0;
   background-color: #e3fafc;
   cursor: pointer;
+  letter-spacing: 1px;
 
   &:hover {
     background-color: #c5f6fa;
@@ -98,8 +104,7 @@ export const Button = styled.button`
 
 export const MsgBox = styled.div`
   border: 1px solid #000;
-  margin: 2rem 0;
-  width: 100%;
+  margin-bottom: 3rem;
 `;
 
 export const Box = styled.div`

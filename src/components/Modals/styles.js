@@ -6,14 +6,16 @@ export const Container = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
-  height: 36%;
+  width: 52%;
+  height: 40%;
   background-color: #f5f5dc;
   border-radius: 2rem;
   z-index: 5;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding: 1rem 2rem;
+`;
 
 export const Box = styled.div`
   width: 100%;
@@ -28,7 +30,7 @@ export const IconX = styled(XMarkIcon)`
   fill: red;
   cursor: pointer;
   position: absolute;
-  top: 9%;
+  top: 10%;
   right: 8%;
 `;
 

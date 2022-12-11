@@ -16,6 +16,7 @@ const Modals = ({ accounts, currentUser, setShowModals, setOverlays }) => {
   const [copyMessage, setCopyMessage] = useState("");
   const [activeCopy, setActiveCopy] = useState(false);
   const [successCounter, setSuccessCounter] = useState(0);
+
   const items = calcFilterUser(accounts, currentUser);
 
   const closeModals = () => {
@@ -42,12 +43,16 @@ const Modals = ({ accounts, currentUser, setShowModals, setOverlays }) => {
     <Container>
       <Wrapper>
         <Box>
-          <Text>등록된 계좌목록</Text>
+          <Text>
+            {currentUser.userId} [ {currentUser.name} ]의 계좌목록
+          </Text>
           <IconX onClick={() => closeModals()} />
         </Box>
 
         {items.map((item) => (
           <Div key={item.userId}>
+            <Label>{item.userId}</Label>
+            <Label>{item.pin}</Label>
             <Label>{item.name}</Label>
             <Span>{item.accountNumber}</Span>
             <Button onClick={() => handleCopyText(item)}>계좌복사</Button>

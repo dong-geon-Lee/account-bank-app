@@ -6,3 +6,7 @@ export const formattedTotal = (data) => {
 export const formattedDates = (data) => {
   return new Intl.DateTimeFormat("ko-KR").format(data);
 };
+
+export const formattedCopyText = (data) => {
+  return navigator.clipboard.writeText(data.accountNumber);
+};

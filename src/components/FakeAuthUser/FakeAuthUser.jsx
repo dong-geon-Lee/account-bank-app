@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { authUser, guestAuthUser } from "../../helper/calculates";
 import {
   accountState,
   activeUserState,
@@ -7,7 +8,6 @@ import {
   messageState,
   randomUserState,
 } from "../../atoms/accountState";
-import { authUser, guestAuthUser } from "../../helper/calculates";
 import {
   Box,
   Button,
@@ -25,7 +25,7 @@ import {
 } from "./styles";
 
 const FakeAuthUser = () => {
-  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+  const [, setCurrentUser] = useRecoilState(currentUserState);
   const [, setActiveUser] = useRecoilState(activeUserState);
   const accounts = useRecoilValue(accountState);
   const randomUser = useRecoilValue(randomUserState);
@@ -36,9 +36,6 @@ const FakeAuthUser = () => {
 
   const userId = useRef();
   const pin = useRef();
-
-  console.log(randomUser, "최초 진입점");
-  console.log(currentUser);
 
   const handleGuestAuth = (e) => {
     e.preventDefault();
@@ -114,11 +111,11 @@ const FakeAuthUser = () => {
           <Box>
             <Div>
               <Label>아이디</Label>
-              <Span>{randomUser.userId}</Span>
+              <Span>{randomUser?.userId}</Span>
             </Div>
             <Div>
               <Label>비밀번호</Label>
-              <Span>{randomUser.pin}</Span>
+              <Span>{randomUser?.pin}</Span>
             </Div>
           </Box>
         </Section>

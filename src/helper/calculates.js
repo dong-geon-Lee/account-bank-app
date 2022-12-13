@@ -4,30 +4,16 @@ export const calcTotalBalance = (movements = []) => {
 };
 
 export const calcSortedData = (data, sortActive) => {
-  console.log(data, "?");
-  const newData = data && data?.slice();
+  const newData = data?.slice();
   return sortActive
     ? newData?.sort((a, b) => a.id - b.id)
     : newData?.sort((a, b) => b.id - a.id);
 };
 
-export const findLoginUser = (datas, currentUser) => {
-  return datas.find((account) => account.userId === currentUser.userId);
-};
-
-export const findAccountNumber = (datas, accNumber) => {
-  return datas.find((account) => account.accountNumber === accNumber);
-};
-
-export const calcUpdatedMovements = (datas, transferAmount) => {
-  return {
-    id: datas.movements.length + 1,
-    price: Number(transferAmount),
-  };
-};
-
 export const calcInterest = (datas, loanAmount) => {
-  datas.totalInterest += loanAmount * 0.05;
+  let totalInterest = datas;
+  let sumInterest = (totalInterest += loanAmount * 0.05);
+  return sumInterest;
 };
 
 export const calcDeposit = (datas) => {
@@ -47,24 +33,8 @@ export const calcTransferLimit = (totalBalance, transferAmount) => {
   return totalBalance >= amount && amount <= 1000000;
 };
 
-export const findCorrectUser = (accounts, userId, password) => {
-  return accounts.find(
-    (acc) => acc.userId === userId && acc.pin === Number(password)
-  );
-};
-
 export const calcLoanLimit = (loanAmount) => {
   return Number(loanAmount) <= 10000000 ? Number(loanAmount) : 0;
-};
-
-export const authUser = (loginUser, userId, password) => {
-  return loginUser?.userId === userId && loginUser?.pin === Number(password);
-};
-
-export const guestAuthUser = (accounts, userId, password) => {
-  return accounts.find(
-    (account) => account.userId === userId && account.pin === Number(password)
-  );
 };
 
 export const calcUserIndex = (accounts, loginUser) => {
@@ -77,4 +47,22 @@ export const calcRandomNumber = (accounts) => {
 
 export const calcFilterUser = (accounts, currentUser) => {
   return accounts.filter((account) => account.userId !== currentUser.userId);
+};
+
+export const authUser = (loginUser, userId, password) => {
+  return loginUser?.userId === userId && loginUser?.pin === Number(password);
+};
+
+export const guestAuthUser = (accounts, userId, password) => {
+  return accounts.find(
+    (account) => account.userId === userId && account.pin === Number(password)
+  );
+};
+
+export const findLoginUser = (datas, currentUser) => {
+  return datas.find((account) => account.userId === currentUser.userId);
+};
+
+export const findAccountNumber = (datas, accNumber) => {
+  return datas.find((account) => account.accountNumber === accNumber);
 };

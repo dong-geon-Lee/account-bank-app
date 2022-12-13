@@ -1,12 +1,13 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { balanceInfoState, totalBalanceState } from "../../atoms/accountState";
+import { balanceInfoState, totalBalancesState } from "../../atoms/accountState";
 import { formattedDates, formattedTotal } from "../../helper/formatted";
 import { TextBox, Container, Section, Span, Text, Strong } from "./styles";
 
 const Balance = () => {
-  const { bankName, accNumber, dates, name } = useRecoilValue(balanceInfoState);
-  const totalBalance = useRecoilValue(totalBalanceState);
+  const { bankAccount, accountNumber, createdDate, name } =
+    useRecoilValue(balanceInfoState);
+  const { totalBalance } = useRecoilValue(totalBalancesState);
 
   return (
     <Container>
@@ -16,13 +17,13 @@ const Balance = () => {
             계좌명의: <Strong>{name}</Strong>
           </Span>
           <Span>
-            계좌번호: <Strong>{accNumber}</Strong>
+            계좌번호: <Strong>{accountNumber}</Strong>
           </Span>
-          <Span>계좌개설: {formattedDates(dates)}</Span>
+          <Span>계좌개설: {formattedDates(createdDate)}</Span>
         </TextBox>
         <TextBox>
           <Span>
-            현재계좌: <Strong>{bankName}</Strong>
+            현재계좌: <Strong>{bankAccount}</Strong>
           </Span>
           <Text>{formattedTotal(totalBalance)}원</Text>
         </TextBox>

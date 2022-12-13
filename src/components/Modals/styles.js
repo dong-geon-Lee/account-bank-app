@@ -47,7 +47,7 @@ export const Text = styled.h1`
   font-size: 3.2rem;
   font-weight: 900;
   color: #364fc7;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 
   &.copy {
     font-size: 2.6rem;

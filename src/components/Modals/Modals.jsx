@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { accountState, currentUserState } from "../../atoms/accountState";
 import { modalState, overlayState } from "../../atoms/modalState";
 import { calcFilterUser } from "../../helper/calculates";
+import { formattedCopyText } from "../../helper/formatted";
 import {
   Container,
   Div,
@@ -23,9 +24,8 @@ const Modals = () => {
 
   const [copyMessage, setCopyMessage] = useState("");
   const [activeCopy, setActiveCopy] = useState(false);
-  const [successCounter, setSuccessCounter] = useState(0);
 
-  const items = calcFilterUser(accounts, currentUser);
+  const FilteredItems = calcFilterUser(accounts, currentUser);
 
   const closeModals = () => {
     setModals(false);
@@ -33,9 +33,8 @@ const Modals = () => {
   };
 
   const handleCopyText = (item) => {
-    navigator.clipboard.writeText(item.accountNumber);
     setActiveCopy(true);
-    setSuccessCounter((prev) => prev + 1);
+    formattedCopyText(item);
     setCopyMessage(`${item.name}님의 계좌번호가 복사되었습니다!`);
   };
 
@@ -43,21 +42,21 @@ const Modals = () => {
     const timerId = setTimeout(() => {
       setActiveCopy(false);
       setCopyMessage("");
-    }, 2000);
+    }, 5000);
     return () => clearTimeout(timerId);
-  }, [copyMessage, activeCopy, successCounter]);
+  }, [copyMessage, activeCopy]);
 
   return (
     <Container>
       <Wrapper>
         <Box>
           <Text>
-            {currentUser.userId} [ {currentUser.name} ]의 계좌목록
+            {currentUser.userId} [ {currentUser.name} ]님 계좌목록
           </Text>
           <IconX onClick={() => closeModals()} />
         </Box>
 
-        {items.map((item) => (
+        {FilteredItems.map((item) => (
           <Div key={item.userId}>
             <Label>{item.userId}</Label>
             <Label>{item.pin}</Label>

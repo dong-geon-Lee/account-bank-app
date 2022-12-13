@@ -4,7 +4,7 @@ import { Div, Label, Span } from "./styles";
 
 const RecordedHistory = ({ item }) => {
   return (
-    <Div key={item.id}>
+    <Div>
       <Label check={item.price > 0}>
         {item.price > 0
           ? `기록 ${item.id} - 입금내역`

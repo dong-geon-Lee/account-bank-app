@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { accountState, currentUserState } from "../../atoms/accountState";
+import { modalState, overlayState } from "../../atoms/modalState";
 import { calcFilterUser } from "../../helper/calculates";
 import {
   Container,
@@ -12,7 +15,12 @@ import {
   Box,
 } from "./styles";
 
-const Modals = ({ accounts, currentUser, setShowModals, setOverlays }) => {
+const Modals = () => {
+  const [, setModals] = useRecoilState(modalState);
+  const [, setOverlay] = useRecoilState(overlayState);
+  const accounts = useRecoilValue(accountState);
+  const currentUser = useRecoilValue(currentUserState);
+
   const [copyMessage, setCopyMessage] = useState("");
   const [activeCopy, setActiveCopy] = useState(false);
   const [successCounter, setSuccessCounter] = useState(0);
@@ -20,8 +28,8 @@ const Modals = ({ accounts, currentUser, setShowModals, setOverlays }) => {
   const items = calcFilterUser(accounts, currentUser);
 
   const closeModals = () => {
-    setShowModals(false);
-    setOverlays(false);
+    setModals(false);
+    setOverlay(false);
   };
 
   const handleCopyText = (item) => {

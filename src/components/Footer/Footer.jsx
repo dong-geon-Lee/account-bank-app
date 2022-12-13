@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { sortActiveState, totalBalanceState } from "../../atoms/accountState";
 import { formattedTotal } from "../../helper/formatted";
 import {
   ArrowIcons,
@@ -14,14 +16,10 @@ import {
   Strong,
 } from "./styles";
 
-const Footer = ({
-  totalDeposit,
-  totalWithDrawal,
-  totalBalance,
-  totalInterest,
-  sortActive,
-  setSortActive,
-}) => {
+const Footer = ({ totalDeposit, totalWithDrawal, totalInterest }) => {
+  const totalBalance = useRecoilValue(totalBalanceState);
+  const [sortActive, setSortActive] = useRecoilState(sortActiveState);
+
   const handleMovement = () => {
     setSortActive((prev) => !prev);
   };

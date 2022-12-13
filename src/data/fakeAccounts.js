@@ -39,6 +39,10 @@ const account1 = {
       id: 8,
       price: 12300,
     },
+    {
+      id: 9,
+      price: 40500,
+    },
   ],
 };
 
@@ -84,6 +88,10 @@ const account2 = {
       id: 8,
       price: -3000,
     },
+    {
+      id: 9,
+      price: 20500,
+    },
   ],
 };
 
@@ -128,6 +136,10 @@ const account3 = {
       id: 8,
       price: -12000,
     },
+    {
+      id: 9,
+      price: 10500,
+    },
   ],
 };
 
@@ -171,6 +183,10 @@ const account4 = {
     {
       id: 8,
       price: -12000,
+    },
+    {
+      id: 9,
+      price: 22500,
     },
   ],
 };

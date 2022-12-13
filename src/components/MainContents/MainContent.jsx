@@ -1,42 +1,24 @@
 import React from "react";
-import { calcSortedData } from "../../helper/calculates";
 import ActionContents from "./ActionContents/ActionContents";
 import RecordedHistory from "./RecordedHistory/RecordedHistory";
 import { Container, LeftSide, RightSide, Wrapper } from "./styles";
+import { movementSortState } from "../../atoms/accountState.js";
+import { useRecoilValue } from "recoil";
 
-const MainContent = ({
-  currentUser,
-  accounts,
-  totalBalance,
-  setCurrentUser,
-  setHidden,
-  sortActive,
-  setActiveUser,
-  setMessage,
-}) => {
-  const items = currentUser
-    ? calcSortedData(currentUser?.movements, sortActive)
-    : [];
+const MainContent = () => {
+  const items = useRecoilValue(movementSortState);
 
   return (
     <Container>
       <Wrapper>
         <LeftSide>
-          {items?.map((item) => (
+          {items.map((item) => (
             <RecordedHistory key={item.id} item={item} />
           ))}
         </LeftSide>
 
         <RightSide>
-          <ActionContents
-            currentUser={currentUser}
-            accounts={accounts}
-            totalBalance={totalBalance}
-            setCurrentUser={setCurrentUser}
-            setHidden={setHidden}
-            setActiveUser={setActiveUser}
-            setMessage={setMessage}
-          />
+          <ActionContents />
         </RightSide>
       </Wrapper>
     </Container>

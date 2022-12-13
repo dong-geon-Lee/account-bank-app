@@ -1,8 +1,13 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { balanceInfoState, totalBalanceState } from "../../atoms/accountState";
 import { formattedDates, formattedTotal } from "../../helper/formatted";
 import { TextBox, Container, Section, Span, Text, Strong } from "./styles";
 
-const Balance = ({ totalBalance, bankName, accNumber, dates, name }) => {
+const Balance = () => {
+  const { bankName, accNumber, dates, name } = useRecoilValue(balanceInfoState);
+  const totalBalance = useRecoilValue(totalBalanceState);
+
   return (
     <Container>
       <Section>

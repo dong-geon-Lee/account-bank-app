@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  authUser,
-  calcRandomNumber,
-  guestAuthUser,
-} from "../../helper/calculates";
+  accountState,
+  activeUserState,
+  currentUserState,
+  messageState,
+  randomUserState,
+} from "../../atoms/accountState";
+import { authUser, guestAuthUser } from "../../helper/calculates";
 import {
   Box,
   Button,
@@ -20,28 +24,28 @@ import {
   Text,
 } from "./styles";
 
-const FakeAuthUser = ({
-  message,
-  accounts,
-  setActiveUser,
-  setCurrentUser,
-  setHidden,
-}) => {
+const FakeAuthUser = () => {
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+  const [, setActiveUser] = useRecoilState(activeUserState);
+  const accounts = useRecoilValue(accountState);
+  const randomUser = useRecoilValue(randomUserState);
+  const message = useRecoilValue(messageState);
+
   const [errMessageAccount, setErrMessageAccount] = useState("");
   const [accountInputError, setAccountInputError] = useState(false);
 
   const userId = useRef();
   const pin = useRef();
 
-  const randomAccIndex = calcRandomNumber(accounts);
-  const selectedAccUser = accounts[randomAccIndex];
+  console.log(randomUser, "최초 진입점");
+  console.log(currentUser);
 
   const handleGuestAuth = (e) => {
     e.preventDefault();
 
     const userIdValue = userId.current.value;
     const pinValue = pin.current.value;
-    const checkAuthUser = authUser(selectedAccUser, userIdValue, pinValue);
+    const checkAuthUser = authUser(randomUser, userIdValue, pinValue);
     const checkAuthGuest = guestAuthUser(accounts, userIdValue, pinValue);
 
     function conditionStatement(message, boolean) {
@@ -64,16 +68,13 @@ const FakeAuthUser = ({
 
       if (userIdValue && pinValue) {
         if (
-          selectedAccUser?.userId !== userIdValue &&
+          randomUser?.userId !== userIdValue &&
           checkAuthGuest?.userId !== userIdValue
         ) {
           conditionStatement("잘못된 아이디입니다!", true);
           return;
         }
-        if (
-          selectedAccUser?.pin !== pinValue &&
-          checkAuthGuest?.pin !== pinValue
-        ) {
+        if (randomUser?.pin !== pinValue && checkAuthGuest?.pin !== pinValue) {
           conditionStatement("잘못된 비밀번호입니다!", true);
           return;
         }
@@ -83,9 +84,8 @@ const FakeAuthUser = ({
     validationAuth();
 
     if (checkAuthUser || checkAuthGuest) {
-      setCurrentUser(checkAuthUser ? selectedAccUser : checkAuthGuest);
+      setCurrentUser(checkAuthUser ? randomUser : checkAuthGuest);
       setActiveUser(true);
-      setHidden(false);
 
       userId.current.value = "";
       pin.current.value = "";
@@ -114,11 +114,11 @@ const FakeAuthUser = ({
           <Box>
             <Div>
               <Label>아이디</Label>
-              <Span>{selectedAccUser.userId}</Span>
+              <Span>{randomUser.userId}</Span>
             </Div>
             <Div>
               <Label>비밀번호</Label>
-              <Span>{selectedAccUser.pin}</Span>
+              <Span>{randomUser.pin}</Span>
             </Div>
           </Box>
         </Section>

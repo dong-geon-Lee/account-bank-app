@@ -4,9 +4,11 @@ export const calcTotalBalance = (movements = []) => {
 };
 
 export const calcSortedData = (data, sortActive) => {
+  console.log(data, "?");
+  const newData = data && data?.slice();
   return sortActive
-    ? data?.sort((a, b) => a.id - b.id)
-    : data?.sort((a, b) => b.id - a.id);
+    ? newData?.sort((a, b) => a.id - b.id)
+    : newData?.sort((a, b) => b.id - a.id);
 };
 
 export const findLoginUser = (datas, currentUser) => {
@@ -18,10 +20,10 @@ export const findAccountNumber = (datas, accNumber) => {
 };
 
 export const calcUpdatedMovements = (datas, transferAmount) => {
-  datas.movements.unshift({
+  return {
     id: datas.movements.length + 1,
     price: Number(transferAmount),
-  });
+  };
 };
 
 export const calcInterest = (datas, loanAmount) => {

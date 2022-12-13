@@ -10,25 +10,24 @@ import {
   findAccountNumber,
   findLoginUser,
 } from "../../../helper/calculates";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  accountState,
+  activeUserState,
+  currentUserState,
+  messageState,
+  totalBalanceState,
+  transfersInfoState,
+} from "../../../atoms/accountState";
 
-const ActionContents = ({
-  currentUser,
-  accounts,
-  totalBalance,
-  setCurrentUser,
-  setHidden,
-  setActiveUser,
-  setMessage,
-}) => {
-  const [transferInfo, setTransferInfo] = useState({
-    accNumber: "",
-    transferAmount: "",
-    loanAmount: "",
-    user: "",
-    userId: "",
-    password: "",
-  });
+const ActionContents = () => {
+  const currentUser = useRecoilValue(currentUserState);
 
+  const setCurrentUser = useSetRecoilState(currentUserState);
+  const totalBalance = useRecoilValue(totalBalanceState);
+  const [transfersInfo, setTransfersInfo] = useRecoilState(transfersInfoState);
+
+  console.log(setCurrentUser, "추가 로직");
   const [successTransferMessage, setSuccessTransferMessage] = useState("");
   const [sucessTransferSubmit, setSucessTransferSubmit] = useState(false);
   const [sucessTransferCounter, setSucessTransferCounter] = useState(0);
@@ -45,10 +44,14 @@ const ActionContents = ({
   const [errMessageAccount, setErrMessageAccount] = useState("");
 
   const { accNumber, transferAmount, loanAmount, user, userId, password } =
-    transferInfo;
+    transfersInfo;
+
+  const [, setActiveUser] = useRecoilState(activeUserState);
+  const [, setMessage] = useRecoilState(messageState);
+  const accounts = useRecoilValue(accountState);
 
   const onChange = (e) => {
-    setTransferInfo({ ...transferInfo, [e.target.name]: e.target.value });
+    setTransfersInfo({ ...transfersInfo, [e.target.name]: e.target.value });
   };
 
   const handleTransfer = (e) => {
@@ -108,25 +111,30 @@ const ActionContents = ({
       checkDuplicateAcc;
 
     if (allCheck) {
-      calcUpdatedMovements(checkLoginUser, -transferAmount);
+      // const movements = calcUpdatedMovements(checkLoginUser, -transferAmount);
       calcUpdatedMovements(targetTransferUser, transferAmount);
+      // setCurrentUser({
+      //   ...currentUser,
+      //   movements,
+      //   totalInterest: checkLoginUser.totalInterest,
+      // });
+
+      // setCurrentUser((prevState) => [
+      //   { id: prevState.movements.length + 1, price: Number(-transferAmount) },
+      // ]);
+
       setCurrentUser({
         ...currentUser,
-        movements: checkLoginUser.movements,
-        totalInterest: checkLoginUser.totalInterest,
+        movements: [{ id: 10, price: 5000 }, ...currentUser.movements],
       });
-
-      setSuccessTransferMessage("계좌이체가 완료되었습니다!");
-      setSucessTransferSubmit(true);
-      setSucessTransferCounter((prev) => prev + 1);
-      // setTimeout(() => {
-      //   setSucessTransferSubmit(false);
-      // }, 5000);
     }
+    setSuccessTransferMessage("계좌이체가 완료되었습니다!");
+    setSucessTransferSubmit(true);
+    setSucessTransferCounter((prev) => prev + 1);
 
     setTransferInputError(false);
     setErrMessageTransfer("");
-    setTransferInfo({
+    setTransfersInfo({
       accNumber: "",
       transferAmount: "",
       loanAmount: "",
@@ -180,11 +188,13 @@ const ActionContents = ({
     if (checkUser && checkLoan && checkLoginUser) {
       calcUpdatedMovements(checkLoginUser, checkLoan);
       calcInterest(checkLoginUser, checkLoan);
-      setCurrentUser({
-        ...currentUser,
-        movements: checkLoginUser.movements,
-        totalInterest: checkLoginUser.totalInterest,
-      });
+      setCurrentUser((prev) => [
+        {
+          ...prev,
+          movements: checkLoginUser.movements,
+          totalInterest: checkLoginUser.totalInterest,
+        },
+      ]);
 
       setSuccessLoanMessage("대출요청이 처리되었습니다! 계좌를 확인하세요!");
       setSucessLoanSubmit(true);
@@ -193,7 +203,7 @@ const ActionContents = ({
 
     setLoanInputError(false);
     setErrMessageLoan("");
-    setTransferInfo({
+    setTransfersInfo({
       accNumber: "",
       transferAmount: "",
       loanAmount: "",
@@ -240,15 +250,15 @@ const ActionContents = ({
 
     if (authUser(checkLoginUser, userId, password)) {
       const index = calcUserIndex(accounts, checkLoginUser);
+
       accounts.splice(index, 1);
-      setHidden(true);
       setActiveUser(false);
       setMessage(`${currentUser.userId} 계정이 삭제되었습니다`);
     }
 
     setAccountInputError(false);
     setErrMessageAccount("");
-    setTransferInfo({
+    setTransfersInfo({
       accNumber: "",
       transferAmount: "",
       loanAmount: "",

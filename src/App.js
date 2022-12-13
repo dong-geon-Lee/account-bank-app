@@ -1,6 +1,6 @@
 import React from "react";
-import Account from "./pages/Account";
 import GlobalStyle from "./styles/GlobalStyle";
+import Account from "./pages/Account";
 
 const App = () => {
   return (

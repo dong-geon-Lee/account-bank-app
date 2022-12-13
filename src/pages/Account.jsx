@@ -3,34 +3,44 @@ import Balance from "../components/Balance/Balance";
 import Footer from "../components/Footer/Footer";
 import Hedaer from "../components/Header/Hedaer";
 import MainContent from "../components/MainContents/MainContent";
-import { accounts } from "../data/fakeAccounts";
 import { Container, Wrapper } from "./styles";
 import FakeAuthUser from "../components/FakeAuthUser/FakeAuthUser";
-import Modals from "../components/Modals/Modals";
 import {
   calcDeposit,
   calcTotalBalance,
   calcWithDrawal,
 } from "../helper/calculates";
+import Modals from "../components/Modals/Modals";
 import Overlays from "../components/Modals/Overlays/Overlays";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { controlModalState } from "../atoms/modalState";
+import {
+  accNumberState,
+  activeUserState,
+  bankNameState,
+  currentUserState,
+  datesState,
+  nameState,
+  totalBalanceState,
+  userIdState,
+} from "../atoms/accountState";
 
 const Account = () => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [activeUser, setActiveUser] = useState(false);
-  const [message, setMessage] = useState("");
-  const [totalBalance, setTotalBalance] = useState(0);
-  const [bankName, setBankName] = useState("");
-  const [name, setName] = useState("");
-  const [accNumber, setAccNumber] = useState("");
-  const [dates, setDates] = useState(null);
-  const [hidden, setHidden] = useState(false);
+  const currentUser = useRecoilValue(currentUserState);
+  const [, setTotalBalance] = useRecoilState(totalBalanceState);
+
   const [totalDeposit, setTotalDeposit] = useState(0);
   const [totalWithDrawal, settotalWithDrawal] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
-  const [sortActive, setSortActive] = useState(false);
-  const [userId, setUserId] = useState("");
-  const [showModals, setShowModals] = useState(false);
-  const [overlays, setOverlays] = useState(false);
+
+  const controlModal = useRecoilValue(controlModalState);
+  const activeUser = useRecoilValue(activeUserState);
+
+  const [, setUserId] = useRecoilState(userIdState);
+  const [, setBankName] = useRecoilState(bankNameState);
+  const [, setName] = useRecoilState(nameState);
+  const [, setAccNumber] = useRecoilState(accNumberState);
+  const [, setDates] = useRecoilState(datesState);
 
   useEffect(() => {
     setTotalBalance(calcTotalBalance(currentUser?.movements));
@@ -50,70 +60,26 @@ const Account = () => {
     <Container>
       {activeUser ? (
         <>
-          <Hedaer
-            name={name}
-            userId={userId}
-            accounts={accounts}
-            setCurrentUser={setCurrentUser}
-            setActiveUser={setActiveUser}
-            setMessage={setMessage}
-            setHidden={setHidden}
-            activeUser={activeUser}
-            setShowModals={setShowModals}
-            setOverlays={setOverlays}
-          />
-          <Wrapper hidden={hidden}>
-            <Balance
-              totalBalance={totalBalance}
-              bankName={bankName}
-              accNumber={accNumber}
-              dates={dates}
-              name={name}
-            />
-            <MainContent
-              currentUser={currentUser}
-              accounts={accounts}
-              totalBalance={totalBalance}
-              setCurrentUser={setCurrentUser}
-              setHidden={setHidden}
-              sortActive={sortActive}
-              setActiveUser={setActiveUser}
-              setMessage={setMessage}
-            />
+          <Hedaer />
+          <Wrapper>
+            <Balance />
+            <MainContent currentUser={currentUser} />
             <Footer
               totalDeposit={totalDeposit}
               totalWithDrawal={totalWithDrawal}
-              totalBalance={totalBalance}
               totalInterest={totalInterest}
-              sortActive={sortActive}
-              setSortActive={setSortActive}
             />
-            {showModals && overlays && (
+
+            {controlModal && (
               <>
-                <Overlays
-                  accounts={accounts}
-                  setShowModals={setShowModals}
-                  setOverlays={setOverlays}
-                />
-                <Modals
-                  accounts={accounts}
-                  currentUser={currentUser}
-                  setShowModals={setShowModals}
-                  setOverlays={setOverlays}
-                />
+                <Overlays />
+                <Modals />
               </>
             )}
           </Wrapper>
         </>
       ) : (
-        <FakeAuthUser
-          message={message}
-          setMessage={setMessage}
-          accounts={accounts}
-          setActiveUser={setActiveUser}
-          setCurrentUser={setCurrentUser}
-          setHidden={setHidden}
-        />
+        <FakeAuthUser />
       )}
     </Container>
   );

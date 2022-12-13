@@ -6,8 +6,8 @@ export const Container = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 52%;
-  height: 40%;
+  width: 75rem;
+  height: 42rem;
   background-color: #f5f5dc;
   border-radius: 2rem;
   z-index: 5;

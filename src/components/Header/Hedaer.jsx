@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, overlayState } from "../../atoms/modalState";
-import { Container, Description, Div, Button, Logo } from "./styles";
+import { Container, Description, Div, Button, Logo, LogoBox } from "./styles";
 import {
   activeUserState,
   currentUserState,
@@ -28,7 +28,7 @@ const Hedaer = () => {
   return (
     <Container>
       <Div>
-        <Logo />
+        <Logo src={process.env.PUBLIC_URL + "/assets/bank.png"} />
         <Description>{userId} 님 환영합니다.</Description>
       </Div>
 

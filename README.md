@@ -87,18 +87,29 @@ Crew | Role | GitHub
 </details>
 
 <details>
-<summary>유효성 검사 (2) - 대출요청</summary>  
+<summary>유효성 검사 (2) - 대출 요청</summary>  
  <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207621527-1b2e1577-e792-45a3-936c-16f704834513.gif">
+ src="https://user-images.githubusercontent.com/69576865/207626418-e099a905-f3e6-40a7-94cf-7968ad0ec964.gif">
  <div markdown="1">
    <h4>예외조건</h4>
-   <p>1) 계좌번호를 입력하지 않는 경우</p>
-   <p>2) 이체금액을 입력하지 않는 경우</p>
-   <p>3) 계좌번호 이체금액 모두 입력하지 않는 경우</p>
-   <p>4) 자기 스스로에게 이체하는 경우</p>
-   <p>5) 잘못된 계좌번호를 입력하는 경우</p>
-   <p>6) 이체한도 100만원을 초과하는 경우</p>
-   <p>7) 잔액이 부족한 경우 </p>
+   <p>1) 계좌명의를 입력하지 않는 경우</p>
+   <p>2) 대출금액을 입력하지 않는 경우</p>
+   <p>3) 계좌명의와 대출금액 모두 입력하지 않는 경우</p>
+   <p>4) 본의명의로 대출하지 않는 경우</p>
+   <p>5) 대출한도 1000만원을 초과하는 경우</p>
  </div>
 </details>
 
+<details>
+<summary>유효성 검사 (3) - 계정 폐쇄</summary>  
+ <img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/207626418-e099a905-f3e6-40a7-94cf-7968ad0ec964.gif">
+ <div markdown="1">
+   <h4>예외조건</h4>
+   <p>1) 계좌명의를 입력하지 않는 경우</p>
+   <p>2) 대출금액을 입력하지 않는 경우</p>
+   <p>3) 계좌명의와 대출금액 모두 입력하지 않는 경우</p>
+   <p>4) 본의명의로 대출하지 않는 경우</p>
+   <p>5) 대출한도 1000만원을 초과하는 경우</p>
+ </div>
+</details>

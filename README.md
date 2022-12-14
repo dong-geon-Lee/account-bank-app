@@ -35,11 +35,12 @@ Crew | Role | GitHub
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207606713-bc28e9da-ef7e-4d31-8a6d-a87f5b41a9df.gif">
+ src="https://user-images.githubusercontent.com/69576865/207608119-b387e864-c206-4623-b5d9-673215e0353f.gif">
 </details>
 
+
 <details>
-<summary>랜딩페이지 네비게이션</summary>  
+<summary>계좌복사 & 계좌이체</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""

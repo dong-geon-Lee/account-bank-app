@@ -1,8 +1,8 @@
 <img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/207539786-4203251e-7665-4726-a441-05633f692ab1.png">
 
 ## :mag_right: &nbsp; Intro
-#### 인터넷뱅킹 서비스를 모방하여 해당 앱을 구현하였습니다.
-#### 계과이체와 대출요청 그리고 계정삭제 등의 기능을 가지고 있습니다.
+> 인터넷뱅킹 서비스를 모방하여 해당 앱을 구현하였습니다. <br/>
+계과이체와 대출요청 그리고 계정삭제 등의 기능을 가지고 있습니다.
 <br/>
 
 ## :link: &nbsp; Link
@@ -23,14 +23,13 @@
 <br/>
 <br/>
 
-## :bust_in_silhouette: &nbsp; CREW
+## :bust_in_silhouette: &nbsp; Crew
 Crew | Role | GitHub
 ----- | ----- | -----
 💻 이동건 | Front-end | https://github.com/dong-geon-Lee
 <br/>
 
 ## :eyes: &nbsp; Web View
-
 <details>
 <summary>랜딩페이지</summary>  
 <div markdown="1">

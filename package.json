@@ -1,6 +1,6 @@
 {
   "homepage": "http://dong-geon-Lee.github.io/account-bank-app/",
-  "name": "account-book-app",
+  "name": "account-bank-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

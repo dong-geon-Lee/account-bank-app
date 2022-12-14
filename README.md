@@ -1,5 +1,4 @@
-![bank-logo__3___3_-removebg-preview (1)](https://user-images.githubusercontent.com/69576865/207521335-63b52782-f59b-4785-bf51-5c704bd41b81.png)
-
+<img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/207539786-4203251e-7665-4726-a441-05633f692ab1.png">
 
 ## 🖥️ Tech Stack
 

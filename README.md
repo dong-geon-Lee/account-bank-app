@@ -53,3 +53,11 @@ Crew | Role | GitHub
 <img width="600" alt=""
  src="https://user-images.githubusercontent.com/69576865/207613936-5bcffdd3-57ef-4417-9f66-bcc25781ab31.gif">
 </details>
+
+<details>
+<summary>계정 폐쇄</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/207613936-5bcffdd3-57ef-4417-9f66-bcc25781ab31.gif">
+</details>

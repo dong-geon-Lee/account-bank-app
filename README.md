@@ -38,11 +38,11 @@ Crew | Role | GitHub
  src="https://user-images.githubusercontent.com/69576865/207608119-b387e864-c206-4623-b5d9-673215e0353f.gif">
 </details>
 
-
 <details>
 <summary>계좌복사 & 계좌이체</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/179657550-50f8098b-23a4-41d7-9246-d2cc325aefbb.gif">
+ src="https://user-images.githubusercontent.com/69576865/207610277-50bcc798-3d0d-4aaf-9bd0-f18e528211c9.gif">
 </details>
+

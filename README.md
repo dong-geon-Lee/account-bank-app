@@ -35,7 +35,7 @@ Crew | Role | GitHub
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207608119-b387e864-c206-4623-b5d9-673215e0353f.gif">
+ src="https://user-images.githubusercontent.com/69576865/207612332-28ab3131-737b-4326-9435-d10df575ea43.gif">
 </details>
 
 <details>

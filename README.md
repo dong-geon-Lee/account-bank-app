@@ -47,7 +47,7 @@ Crew | Role | GitHub
 </details>
 
 <details>
-<summary>대출받기</summary>  
+<summary>대출 </summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""

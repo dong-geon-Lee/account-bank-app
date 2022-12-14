@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/69576865/207509202-89434152-5966-4421-85ca-fd8aeecd1dfd.png" width="100" height="100"/>
+![bank-logo (3) (3)](https://user-images.githubusercontent.com/69576865/207520829-a98216a7-1ed0-4129-96f7-273c494356d0.png)
 
 ## 🖥️ Tech Stack
 
@@ -8,4 +8,5 @@
 ![React](https://img.shields.io/badge/React-444444?style=for-the-badge&logo=React)
 ![Recoil](https://img.shields.io/badge/Recoil-00A4DC?style=for-the-badge&logo=Relay&logoColor=fff)
 ![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)
+
 

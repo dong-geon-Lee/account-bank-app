@@ -19,9 +19,11 @@ export const Div = styled.div`
   gap: 2.4rem;
 `;
 
-export const Logo = styled(BuildingLibraryIcon)`
-  width: 5.6rem;
-  height: 5.6rem;
+export const Logo = styled.img`
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: cover;
+  display: block;
 `;
 
 export const Button = styled.button`

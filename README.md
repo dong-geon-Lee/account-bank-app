@@ -63,7 +63,7 @@ Crew | Role | GitHub
 </details>
 
 <details>
-<summary>정렬(오름차순 & 내림차순)</summary>  
+<summary>정렬하기</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""

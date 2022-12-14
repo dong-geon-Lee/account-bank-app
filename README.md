@@ -28,3 +28,21 @@ Crew | Role | GitHub
 ----- | ----- | -----
 💻 이동건 | Front-end | https://github.com/dong-geon-Lee
 <br/>
+
+## :eyes: &nbsp; Web View
+
+<details>
+<summary>랜딩페이지</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179656477-f1b9a286-2f71-4ff7-a694-7f4abeee15c7.gif">
+</details>
+
+<details>
+<summary>랜딩페이지 네비게이션</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/179657550-50f8098b-23a4-41d7-9246-d2cc325aefbb.gif">
+</details>

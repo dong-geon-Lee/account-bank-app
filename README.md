@@ -70,3 +70,10 @@ Crew | Role | GitHub
  src="https://user-images.githubusercontent.com/69576865/207617366-baa91f0f-38f0-4b79-b0b8-38ede2542e05.gif">
 </details>
 
+<details>
+<summary>유효성 검사(1) - 계좌이체</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/207617366-baa91f0f-38f0-4b79-b0b8-38ede2542e05.gif">
+</details>

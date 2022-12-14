@@ -23,12 +23,6 @@
 <br/>
 <br/>
 
-## :bust_in_silhouette: &nbsp; Crew
-Crew | Role | GitHub
------ | ----- | -----
-💻 이동건 | Front-end | https://github.com/dong-geon-Lee
-<br/>
-
 ## :eyes: &nbsp; Web View
 <details>
 <summary>로그인 & 랜딩페이지</summary>  
@@ -113,3 +107,10 @@ Crew | Role | GitHub
    <p>5) 아이디와 비밀번호 모두 입력하지 않은 경우</p>
  </div>
 </details>
+</br>
+
+## :bust_in_silhouette: &nbsp; Crew
+Crew | Role | GitHub
+----- | ----- | -----
+💻 이동건 | Front-end | https://github.com/dong-geon-Lee
+<br/>

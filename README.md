@@ -46,3 +46,10 @@ Crew | Role | GitHub
  src="https://user-images.githubusercontent.com/69576865/207610277-50bcc798-3d0d-4aaf-9bd0-f18e528211c9.gif">
 </details>
 
+<details>
+<summary>대출받기</summary>  
+<div markdown="1">
+</div>
+<img width="600" alt=""
+ src="https://user-images.githubusercontent.com/69576865/207610277-50bcc798-3d0d-4aaf-9bd0-f18e528211c9.gif">
+</details>

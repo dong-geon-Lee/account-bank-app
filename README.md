@@ -1,6 +1,17 @@
 <img width="100" height="100" alt="bank" src="https://user-images.githubusercontent.com/69576865/207539786-4203251e-7665-4726-a441-05633f692ab1.png">
 
-## 🖥️ Tech Stack
+## :mag_right: Intro
+#### 인터넷뱅킹 서비스를 구현하였습니다. 해당 어플리케이션은 
+#### 계과이체와 대출요청 그리고 계정삭제 등의 기능을 가지고 있습니다.
+    
+## :alarm_clock: Period
+- 2021.04.17 - 2021.06.29
+
+
+### :link: Link
+- https://dong-geon-lee.github.io/account-bank-app/
+
+## :seedling: Stack
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=fff)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=fff)

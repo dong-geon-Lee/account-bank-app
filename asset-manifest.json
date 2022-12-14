@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/account-book-app/static/js/main.829e704f.js",
-    "index.html": "/account-book-app/index.html",
-    "main.829e704f.js.map": "/account-book-app/static/js/main.829e704f.js.map"
+    "main.js": "/account-bank-app/static/js/main.c96d56c7.js",
+    "index.html": "/account-bank-app/index.html",
+    "main.c96d56c7.js.map": "/account-bank-app/static/js/main.c96d56c7.js.map"
   },
   "entrypoints": [
-    "static/js/main.829e704f.js"
+    "static/js/main.c96d56c7.js"
   ]
 }

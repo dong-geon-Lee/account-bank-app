@@ -13,7 +13,7 @@
 ## :bust_in_silhouette: CREW
 Crew | Role | GitHub
 ----- | ----- | -----
-💻이동건 | Front-end | https://github.com/dong-geon-Lee
+💻 이동건 | Front-end | https://github.com/dong-geon-Lee
 
 ## :seedling: Stack
 

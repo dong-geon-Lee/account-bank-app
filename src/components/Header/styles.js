@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BuildingLibraryIcon } from "@heroicons/react/24/solid";
 
 export const Container = styled.header`
   display: flex;

@@ -103,13 +103,13 @@ Crew | Role | GitHub
 <details>
 <summary>유효성 검사 (3) - 계정 폐쇄</summary>  
  <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/207626418-e099a905-f3e6-40a7-94cf-7968ad0ec964.gif">
+ src="https://user-images.githubusercontent.com/69576865/207628572-ae7799c3-6103-4032-982d-eb7c5daa3000.gif">
  <div markdown="1">
    <h4>예외조건</h4>
-   <p>1) 계좌명의를 입력하지 않는 경우</p>
-   <p>2) 대출금액을 입력하지 않는 경우</p>
-   <p>3) 계좌명의와 대출금액 모두 입력하지 않는 경우</p>
-   <p>4) 본의명의로 대출하지 않는 경우</p>
-   <p>5) 대출한도 1000만원을 초과하는 경우</p>
+   <p>1) 아이디를 입력하지 않는 경우</p>
+   <p>2) 비밀번호을 입력하지 않는 경우</p>
+   <p>3) 아이디가 존재하지 않거나 일치하지 않는 경우</p>
+   <p>4) 비밀번호가 일치하지 않는 경우</p>
+   <p>5) 아이디와 비밀번호 모두 입력하지 않은 경우</p>
  </div>
 </details>

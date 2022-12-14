@@ -4,11 +4,11 @@
 #### 인터넷뱅킹 서비스를 모방하여 해당 앱을 구현하였습니다.
 #### 계과이체와 대출요청 그리고 계정삭제 등의 기능을 가지고 있습니다.
     
-## :alarm_clock: Period
-- 2022.12.05 - 2022.12.13
-
 ## :link: Link
 - https://dong-geon-lee.github.io/account-bank-app/
+
+## :alarm_clock: Period
+- 2022.12.05 - 2022.12.13
 
 ## :seedling: Stack
 

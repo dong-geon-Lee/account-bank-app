@@ -8,7 +8,12 @@
 - https://dong-geon-lee.github.io/account-bank-app/
 
 ## :alarm_clock: Period
-- 2022.12.05 - 2022.12.13
+ - 2022.12.05 - 2022.12.13
+
+## :bust_in_silhouette: CREW
+Crew | Role | GitHub
+----- | ----- | -----
+💻이동건 | Front-end | https://github.com/dong-geon-Lee
 
 ## :seedling: Stack
 
@@ -18,5 +23,4 @@
 ![React](https://img.shields.io/badge/React-444444?style=for-the-badge&logo=React)
 ![Recoil](https://img.shields.io/badge/Recoil-00A4DC?style=for-the-badge&logo=Relay&logoColor=fff)
 ![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)
-
 

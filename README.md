@@ -31,11 +31,11 @@ Crew | Role | GitHub
 
 ## :eyes: &nbsp; Web View
 <details>
-<summary>랜딩페이지</summary>  
+<summary>로그인 & 랜딩페이지</summary>  
 <div markdown="1">
 </div>
 <img width="600" alt=""
- src="https://user-images.githubusercontent.com/69576865/179656477-f1b9a286-2f71-4ff7-a694-7f4abeee15c7.gif">
+ src="https://user-images.githubusercontent.com/69576865/207606713-bc28e9da-ef7e-4d31-8a6d-a87f5b41a9df.gif">
 </details>
 
 <details>

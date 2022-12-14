@@ -1,4 +1,4 @@
-![bank-logo (3) (3)](https://user-images.githubusercontent.com/69576865/207520829-a98216a7-1ed0-4129-96f7-273c494356d0.png)
+
 
 ## 🖥️ Tech Stack
 
@@ -10,3 +10,4 @@
 ![styled-components](https://img.shields.io/badge/styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=fff)
 
 
+![bank-logo__3___3_-removebg-preview (1)](https://user-images.githubusercontent.com/69576865/207521169-8d57531a-dd36-4817-8bfb-90ab74943996.png)

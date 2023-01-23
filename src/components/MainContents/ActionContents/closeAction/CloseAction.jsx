@@ -7,12 +7,21 @@ import {
   currentUserState,
   messageState,
   transferInfoState,
-} from "../../../../atoms/accountState";
+} from "../../../../recoils/accountState";
 import {
   authUser,
+  calcAccountRange,
   calcUserIndex,
   findLoginUser,
 } from "../../../../helper/calculates";
+import {
+  CLOSE__INPUT__ERROR,
+  DELETE__ACCOUNTS,
+  EMPTY__INPUT__ID,
+  EMPTY__INPUT__PASSWORD,
+  NOT__CORRECT__PASSWORD,
+  NOT__EXIST__ID,
+} from "../../../../constants/constants";
 
 const CloseAction = () => {
   const accounts = useRecoilValue(accountState);
@@ -41,42 +50,43 @@ const CloseAction = () => {
     }
 
     if (!userId && !password) {
-      conditionStatement("아이디 또는 비밀번호를 모두 입력하세요!", true);
+      conditionStatement(CLOSE__INPUT__ERROR, true);
       return;
     }
 
     if (!userId || !password) {
       !userId
-        ? conditionStatement("아이디를 입력하세요!", true)
-        : conditionStatement("비밀번호를 입력하세요!", true);
+        ? conditionStatement(EMPTY__INPUT__ID, true)
+        : conditionStatement(EMPTY__INPUT__PASSWORD, true);
       return;
     }
 
     if (userId && password) {
       const loginUser = findLoginUser(accounts, currentUser);
+
       if (loginUser.userId !== userId) {
-        conditionStatement("존재하지 않거나 잘못된 아이디입니다!", true);
+        conditionStatement(NOT__EXIST__ID, true);
         return;
       }
 
       if (loginUser.pin !== Number(password)) {
-        conditionStatement("비밀번호가 맞지 않습니다!", true);
+        conditionStatement(NOT__CORRECT__PASSWORD, true);
         return;
       }
     }
 
     const checkLoginUser = findLoginUser(accounts, currentUser);
+    const checkAuthUser = authUser(checkLoginUser, userId, password);
 
-    if (authUser(checkLoginUser, userId, password)) {
+    if (checkAuthUser) {
       const index = calcUserIndex(accounts, checkLoginUser);
-
-      let accountLists = accounts.slice(0, accounts.length);
+      const accountLists = calcAccountRange(accounts);
       accountLists.splice(index, 1);
 
       setCurrentUser(null);
       setAccounts(accountLists);
       setActiveUser(false);
-      setMessage(`${currentUser.userId} 계정이 삭제되었습니다`);
+      setMessage(`${currentUser.userId} ${DELETE__ACCOUNTS}`);
     }
 
     setAccountInputError(false);

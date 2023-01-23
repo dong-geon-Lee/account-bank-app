@@ -2,7 +2,7 @@ import React from "react";
 import ActionContents from "./ActionContents/ActionContents";
 import RecordedHistory from "./RecordedHistory/RecordedHistory";
 import { Container, LeftSide, RightSide, Wrapper } from "./styles";
-import { movementSortState } from "../../atoms/accountState.js";
+import { movementSortState } from "../../recoils/accountState.js";
 import { useRecoilValue } from "recoil";
 
 const MainContent = () => {

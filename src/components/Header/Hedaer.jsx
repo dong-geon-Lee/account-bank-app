@@ -1,12 +1,12 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { modalState, overlayState } from "../../atoms/modalState";
-import { Container, Description, Div, Button, Logo, LogoBox } from "./styles";
+import { modalState, overlayState } from "../../recoils/modalState";
+import { Container, Description, Div, Button, Logo } from "./styles";
 import {
   activeUserState,
   currentUserState,
   messageState,
-} from "../../atoms/accountState";
+} from "../../recoils/accountState";
 
 const Hedaer = () => {
   const { userId } = useRecoilValue(currentUserState);

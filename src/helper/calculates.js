@@ -37,6 +37,14 @@ export const calcLoanLimit = (loanAmount) => {
   return Number(loanAmount) <= 10000000 ? Number(loanAmount) : 0;
 };
 
+export const exceedLoans = (loanAmount) => {
+  return Number(loanAmount) > 10000000;
+};
+
+export const exeedTransfer = (transferAmount) => {
+  return Number(transferAmount) > 1000000;
+};
+
 export const calcUserIndex = (accounts, loginUser) => {
   return accounts.findIndex((account) => account.userId === loginUser.userId);
 };
@@ -53,6 +61,10 @@ export const authUser = (loginUser, userId, password) => {
   return loginUser?.userId === userId && loginUser?.pin === Number(password);
 };
 
+export const checkAuthUser = (currentUser, user) => {
+  return currentUser.name === user;
+};
+
 export const guestAuthUser = (accounts, userId, password) => {
   return accounts.find(
     (account) => account.userId === userId && account.pin === Number(password)
@@ -65,4 +77,8 @@ export const findLoginUser = (datas, currentUser) => {
 
 export const findAccountNumber = (datas, accNumber) => {
   return datas.find((account) => account.accountNumber === accNumber);
+};
+
+export const calcAccountRange = (accounts) => {
+  return accounts.slice(0, accounts.length);
 };

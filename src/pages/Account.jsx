@@ -8,8 +8,8 @@ import Modals from "../components/Modals/Modals";
 import Overlays from "../components/Modals/Overlays/Overlays";
 import { Container, Wrapper } from "./styles";
 import { useRecoilValue } from "recoil";
-import { controlModalState } from "../atoms/modalState";
-import { activeUserState } from "../atoms/accountState";
+import { controlModalState } from "../recoils/modalState";
+import { activeUserState } from "../recoils/accountState";
 
 const Account = () => {
   const activeUser = useRecoilValue(activeUserState);

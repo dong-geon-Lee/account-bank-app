@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { accountState, currentUserState } from "../../atoms/accountState";
-import { modalState, overlayState } from "../../atoms/modalState";
+import { accountState, currentUserState } from "../../recoils/accountState";
+import { modalState, overlayState } from "../../recoils/modalState";
 import { calcFilterUser } from "../../helper/calculates";
 import { formattedCopyText } from "../../helper/formatted";
 import {

@@ -82,7 +82,6 @@ export const totalBalancesState = selector({
     const totalDeposit = calcDeposit(currentUser?.movements);
     const totalWithDrawal = calcWithDrawal(currentUser?.movements);
     const totalInterest = currentUser?.totalInterest;
-
     return { totalBalance, totalDeposit, totalWithDrawal, totalInterest };
   },
 });

@@ -6,13 +6,23 @@ import {
   currentUserState,
   totalBalancesState,
   transferInfoState,
-} from "../../../../atoms/accountState";
+} from "../../../../recoils/accountState";
 import {
   calcTransferLimit,
-  calcUserIndex,
+  exeedTransfer,
   findAccountNumber,
   findLoginUser,
 } from "../../../../helper/calculates";
+import {
+  COMPLETE__TRANSFER,
+  EMPTY__ACCOUNT__NUMBER,
+  EMPTY__TRANSFER__AMOUNT,
+  FAIL__TRANSFER,
+  NOT__CORRECT__ACCOUNT,
+  NOT__MILLION__TRANSFER,
+  NOT__TRANSFER__ACCOUNT,
+  TRANSFER__INPUT__ERROR,
+} from "../../../../constants/constants";
 
 const TransferAction = () => {
   const accounts = useRecoilValue(accountState);
@@ -43,14 +53,14 @@ const TransferAction = () => {
     }
 
     if (!accNumber && !transferAmount) {
-      conditionStatement("계좌번호와 이체금액을 모두 입력하세요!", true);
+      conditionStatement(TRANSFER__INPUT__ERROR, true);
       return;
     }
 
     if (!accNumber || !transferAmount) {
       !accNumber
-        ? conditionStatement("계좌번호를 입력하세요!", true)
-        : conditionStatement("이체금액을 입력하세요!", true);
+        ? conditionStatement(EMPTY__ACCOUNT__NUMBER, true)
+        : conditionStatement(EMPTY__TRANSFER__AMOUNT, true);
       return;
     }
 
@@ -59,22 +69,22 @@ const TransferAction = () => {
       const checkAccount = findAccountNumber(accounts, accNumber);
 
       if (loginUser?.accountNumber === accNumber) {
-        conditionStatement("본인의 계좌에 이체 할 수 없습니다!", true);
+        conditionStatement(NOT__TRANSFER__ACCOUNT, true);
         return;
       }
 
       if (checkAccount?.accountNumber !== accNumber) {
-        conditionStatement("잘못된 계좌번호 입니다. 다시 입력해주세요!", true);
+        conditionStatement(NOT__CORRECT__ACCOUNT, true);
         return;
       }
 
-      if (Number(transferAmount) > 1000000) {
-        conditionStatement("이체한도는 100만원을 넘을 수 없습니다!", true);
+      if (exeedTransfer(transferAmount)) {
+        conditionStatement(NOT__MILLION__TRANSFER, true);
         return;
       }
 
       if (Number(transferAmount) > totalBalance) {
-        conditionStatement("잔액이 부족합니다. 이체에 실패하였습니다!", true);
+        conditionStatement(FAIL__TRANSFER, true);
         return;
       }
     }
@@ -83,7 +93,6 @@ const TransferAction = () => {
     const targetTransferUser = findAccountNumber(accounts, accNumber);
     const checkTransferMoney = calcTransferLimit(totalBalance, transferAmount);
     const checkDuplicateAcc = checkLoginUser.accountNumber !== accNumber;
-
     const allCheck =
       checkLoginUser &&
       targetTransferUser &&
@@ -99,49 +108,44 @@ const TransferAction = () => {
         ],
       });
 
-      setSuccessTransferMessage("계좌이체가 완료되었습니다!");
+      setAccounts((prevState) => {
+        return prevState.map((user) => {
+          if (user.id === currentUser.id) {
+            return {
+              ...user,
+              movements: [
+                ...user.movements,
+                {
+                  id: user.movements.length + 1,
+                  price: Number(-transferAmount),
+                },
+              ],
+            };
+          }
+
+          if (user.id === targetTransferUser.id) {
+            return {
+              ...user,
+              movements: [
+                ...user.movements,
+                {
+                  id: user.movements.length + 1,
+                  price: Number(transferAmount),
+                },
+              ],
+            };
+          }
+        });
+      });
+
+      setSuccessTransferMessage(COMPLETE__TRANSFER);
       setSucessTransferSubmit(true);
       setSucessTransferCounter((prev) => prev + 1);
-
-      const user = currentUser;
-      const targetUser = targetTransferUser;
-      const index = calcUserIndex(accounts, user);
-      const targetIndex = calcUserIndex(accounts, targetUser);
-
-      setAccounts((prevState) => {
-        return [
-          ...prevState.slice(0, index),
-          {
-            ...currentUser,
-            movements: [
-              ...currentUser.movements,
-              { id: currentUser.movements.length + 1, price: -transferAmount },
-            ],
-          },
-          ...prevState.slice(index + 1),
-        ];
-      });
-
-      setAccounts((prevState) => {
-        return [
-          ...prevState.slice(0, targetIndex),
-          {
-            ...targetUser,
-            movements: [
-              ...targetUser.movements,
-              {
-                id: targetUser.movements.length + 1,
-                price: Number(transferAmount),
-              },
-            ],
-          },
-          ...prevState.slice(targetIndex + 1),
-        ];
-      });
     }
 
-    setTransferInputError(false);
     setErrMessageTransfer("");
+    setTransferInputError(false);
+    setSucessTransferCounter(0);
     setTransferInfo({
       accNumber: "",
       transferAmount: "",

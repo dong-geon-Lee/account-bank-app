@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { modalState, overlayState } from "../../../atoms/modalState";
+import { modalState, overlayState } from "../../../recoils/modalState";
 import { Container } from "./styles";
 
 const Overlays = () => {

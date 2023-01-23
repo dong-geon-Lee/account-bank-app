@@ -2,12 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authUser, guestAuthUser } from "../../helper/calculates";
 import {
+  EMPTY__INPUT__ID,
+  EMPTY__INPUT__PASSWORD,
+  LOGIN__INPUT__ERROR,
+  REQUEST__LOGIN__MESSAGE,
+  WRONG__INPUT__ID,
+  WRONG__INPUT__PASSWORD,
+} from "../../constants/constants";
+import {
   accountState,
   activeUserState,
   currentUserState,
   messageState,
   randomUserState,
-} from "../../atoms/accountState";
+} from "../../recoils/accountState";
 import {
   Box,
   Button,
@@ -25,17 +33,18 @@ import {
 } from "./styles";
 
 const FakeAuthUser = () => {
-  const [, setCurrentUser] = useRecoilState(currentUserState);
-  const [, setActiveUser] = useRecoilState(activeUserState);
-  const accounts = useRecoilValue(accountState);
-  const randomUser = useRecoilValue(randomUserState);
-  const message = useRecoilValue(messageState);
-
   const [errMessageAccount, setErrMessageAccount] = useState("");
   const [accountInputError, setAccountInputError] = useState(false);
 
   const userId = useRef();
   const pin = useRef();
+
+  const [, setCurrentUser] = useRecoilState(currentUserState);
+  const [, setActiveUser] = useRecoilState(activeUserState);
+
+  const accounts = useRecoilValue(accountState);
+  const randomUser = useRecoilValue(randomUserState);
+  const message = useRecoilValue(messageState);
 
   const handleGuestAuth = (e) => {
     e.preventDefault();
@@ -45,6 +54,8 @@ const FakeAuthUser = () => {
     const checkAuthUser = authUser(randomUser, userIdValue, pinValue);
     const checkAuthGuest = guestAuthUser(accounts, userIdValue, pinValue);
 
+    console.log(checkAuthUser, checkAuthGuest, randomUser);
+
     function conditionStatement(message, boolean) {
       setErrMessageAccount(message);
       setAccountInputError(boolean);
@@ -52,14 +63,14 @@ const FakeAuthUser = () => {
 
     function validationAuth() {
       if (!userIdValue && !pinValue) {
-        conditionStatement("아이디와 비밀번호를 입력하세요!", true);
+        conditionStatement(LOGIN__INPUT__ERROR, true);
         return;
       }
 
       if (!userIdValue || !pinValue) {
         !userIdValue
-          ? conditionStatement("아이디를 입력하세요!", true)
-          : conditionStatement("비밀번호를 입력하세요!", true);
+          ? conditionStatement(EMPTY__INPUT__ID, true)
+          : conditionStatement(EMPTY__INPUT__PASSWORD, true);
         return;
       }
 
@@ -68,11 +79,11 @@ const FakeAuthUser = () => {
           randomUser?.userId !== userIdValue &&
           checkAuthGuest?.userId !== userIdValue
         ) {
-          conditionStatement("잘못된 아이디입니다!", true);
+          conditionStatement(WRONG__INPUT__ID, true);
           return;
         }
         if (randomUser?.pin !== pinValue && checkAuthGuest?.pin !== pinValue) {
-          conditionStatement("잘못된 비밀번호입니다!", true);
+          conditionStatement(WRONG__INPUT__PASSWORD, true);
           return;
         }
       }
@@ -106,7 +117,7 @@ const FakeAuthUser = () => {
               <Message>{message}</Message>
             </MsgBox>
           ) : (
-            <Message>게스트 계정으로 로그인해주세요</Message>
+            <Message>{REQUEST__LOGIN__MESSAGE}</Message>
           )}
           <Box>
             <Div>

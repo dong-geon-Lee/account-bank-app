@@ -1,6 +1,9 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { sortActiveState, totalBalancesState } from "../../atoms/accountState";
+import {
+  sortActiveState,
+  totalBalancesState,
+} from "../../recoils/accountState";
 import { formattedTotal } from "../../helper/formatted";
 import {
   ArrowIcons,

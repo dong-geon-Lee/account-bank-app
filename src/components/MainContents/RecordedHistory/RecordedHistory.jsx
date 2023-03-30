@@ -1,15 +1,14 @@
 import React from "react";
+import { displayCashHistory } from "../../../helper/calculates";
 import { formattedTotal } from "../../../helper/formatted";
 import { Div, Label, Span } from "./styles";
 
 const RecordedHistory = ({ item }) => {
+  const priceText = displayCashHistory(item);
+
   return (
     <Div>
-      <Label check={item.price > 0}>
-        {item.price > 0
-          ? `기록 ${item.id} - 입금내역`
-          : `기록 ${item.id} - 출금내역`}
-      </Label>
+      <Label check={item.price > 0}>{priceText}</Label>
       <Span>{formattedTotal(item.price)}원</Span>
     </Div>
   );

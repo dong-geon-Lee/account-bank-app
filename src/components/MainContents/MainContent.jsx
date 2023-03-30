@@ -12,11 +12,10 @@ const MainContent = () => {
     <Container>
       <Wrapper>
         <LeftSide>
-          {items.map((item) => (
+          {items?.map((item) => (
             <RecordedHistory key={item.id} item={item} />
           ))}
         </LeftSide>
-
         <RightSide>
           <ActionContents />
         </RightSide>

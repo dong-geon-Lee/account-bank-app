@@ -81,3 +81,9 @@ export const findAccountNumber = (datas, accNumber) => {
 export const calcAccountRange = (accounts) => {
   return accounts.slice(0, accounts.length);
 };
+
+export const displayCashHistory = (item) => {
+  return item.price > 0
+    ? `기록 ${item.id} - 입금내역`
+    : `기록 ${item.id} - 출금내역`;
+};

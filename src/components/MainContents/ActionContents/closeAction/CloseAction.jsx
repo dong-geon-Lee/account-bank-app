@@ -107,7 +107,7 @@ const CloseAction = () => {
     }, 4000);
 
     return () => clearTimeout(timerId);
-  }, [errMessageAccount]);
+  }, [errMessageAccount, accountInputError]);
 
   return (
     <Form onSubmit={closeAccount}>

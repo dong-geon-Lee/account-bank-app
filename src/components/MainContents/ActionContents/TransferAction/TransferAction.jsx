@@ -166,7 +166,7 @@ const TransferAction = () => {
     }, 4000);
 
     return () => clearTimeout(timerId);
-  }, [errMessageTransfer, sucessTransferCounter]);
+  }, [errMessageTransfer, sucessTransferCounter, transferInputError]);
 
   return (
     <Form onSubmit={handleTransfer}>

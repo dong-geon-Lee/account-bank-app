@@ -111,8 +111,9 @@ const LoanAction = () => {
       setSucessLoanCounter((prev) => prev + 1);
     }
 
-    setLoanInputError(false);
     setErrMessageLoan("");
+    setLoanInputError(false);
+    setSucessLoanCounter(0);
     setTransferInfo({
       accNumber: "",
       transferAmount: "",
@@ -130,7 +131,7 @@ const LoanAction = () => {
     }, 4000);
 
     return () => clearTimeout(timerId);
-  }, [errMessageLoan, sucessLoanCounter]);
+  }, [errMessageLoan, sucessLoanCounter, loanInputError]);
 
   return (
     <Form onSubmit={requestLoan}>

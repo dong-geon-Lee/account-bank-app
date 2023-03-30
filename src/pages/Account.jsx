@@ -25,12 +25,10 @@ const Account = () => {
             <MainContent />
             <Footer />
           </Wrapper>
-
           {controlModal && <Overlays />}
           {controlModal && <Modals />}
         </>
       )}
-
       {!activeUser && <FakeAuthUser />}
     </Container>
   );

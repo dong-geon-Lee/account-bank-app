@@ -1,6 +1,5 @@
 export const calcTotalBalance = (movements = []) => {
-  const balanceTotal = movements.reduce((acc, cur) => acc + cur.price, 0);
-  return balanceTotal;
+  return movements.reduce((acc, cur) => acc + cur.price, 0);
 };
 
 export const calcSortedData = (data, sortActive) => {
@@ -54,7 +53,7 @@ export const calcRandomNumber = (accounts) => {
 };
 
 export const calcFilterUser = (accounts, currentUser) => {
-  return accounts.filter((account) => account.userId !== currentUser.userId);
+  return accounts?.filter((account) => account?.userId !== currentUser?.userId);
 };
 
 export const authUser = (loginUser, userId, password) => {
@@ -72,11 +71,11 @@ export const guestAuthUser = (accounts, userId, password) => {
 };
 
 export const findLoginUser = (datas, currentUser) => {
-  return datas.find((account) => account.userId === currentUser.userId);
+  return datas.find((account) => account?.userId === currentUser?.userId);
 };
 
 export const findAccountNumber = (datas, accNumber) => {
-  return datas.find((account) => account.accountNumber === accNumber);
+  return datas.find((account) => account?.accountNumber === accNumber);
 };
 
 export const calcAccountRange = (accounts) => {

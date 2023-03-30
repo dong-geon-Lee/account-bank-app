@@ -15,7 +15,7 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const Wrapper = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,8 +41,6 @@ export const Section = styled.section`
   margin-bottom: 2rem;
   width: 80%;
 `;
-
-export const Form = styled.form``;
 
 export const Div = styled.div`
   display: flex;

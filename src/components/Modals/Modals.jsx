@@ -25,7 +25,9 @@ const Modals = () => {
   const [copyMessage, setCopyMessage] = useState("");
   const [activeCopy, setActiveCopy] = useState(false);
 
-  const FilteredItems = calcFilterUser(accounts, currentUser);
+  console.log(accounts);
+  console.log(currentUser);
+  const FilteredItems = calcFilterUser(accounts.slice(), currentUser);
 
   const closeModals = () => {
     setModals(false);
@@ -46,6 +48,8 @@ const Modals = () => {
     return () => clearTimeout(timerId);
   }, [copyMessage, activeCopy]);
 
+  console.log(FilteredItems);
+
   return (
     <Container>
       <Wrapper>
@@ -56,12 +60,12 @@ const Modals = () => {
           <IconX onClick={() => closeModals()} />
         </Box>
 
-        {FilteredItems.map((item) => (
-          <Div key={item.userId}>
-            <Label>{item.userId}</Label>
-            <Label>{item.pin}</Label>
-            <Label>{item.name}</Label>
-            <Span>{item.accountNumber}</Span>
+        {FilteredItems?.map((item) => (
+          <Div key={item?.userId}>
+            <Label>{item?.userId}</Label>
+            <Label>{item?.pin}</Label>
+            <Label>{item?.name}</Label>
+            <Span>{item?.accountNumber}</Span>
             <Button onClick={() => handleCopyText(item)}>계좌복사</Button>
           </Div>
         ))}

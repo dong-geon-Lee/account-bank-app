@@ -124,9 +124,7 @@ const TransferAction = () => {
                 },
               ],
             };
-          }
-
-          if (user.userId === targetTransferUser.userId) {
+          } else if (user.userId === targetTransferUser.userId) {
             return {
               ...user,
               movements: [
@@ -137,6 +135,8 @@ const TransferAction = () => {
                 },
               ],
             };
+          } else {
+            return { ...user };
           }
         });
       });

@@ -28,8 +28,8 @@ import {
   MsgBox,
   Section,
   Span,
-  Wrapper,
   Text,
+  Form,
 } from "./styles";
 
 const FakeAuthUser = () => {
@@ -53,8 +53,6 @@ const FakeAuthUser = () => {
     const pinValue = pin.current.value;
     const checkAuthUser = authUser(randomUser, userIdValue, pinValue);
     const checkAuthGuest = guestAuthUser(accounts, userIdValue, pinValue);
-
-    console.log(checkAuthUser, checkAuthGuest, randomUser);
 
     function conditionStatement(message, boolean) {
       setErrMessageAccount(message);
@@ -94,7 +92,6 @@ const FakeAuthUser = () => {
     if (checkAuthUser || checkAuthGuest) {
       setCurrentUser(checkAuthUser ? randomUser : checkAuthGuest);
       setActiveUser(true);
-
       userId.current.value = "";
       pin.current.value = "";
     }
@@ -110,7 +107,7 @@ const FakeAuthUser = () => {
 
   return (
     <Container>
-      <Wrapper onSubmit={handleGuestAuth}>
+      <Form onSubmit={handleGuestAuth}>
         <Section>
           {message ? (
             <MsgBox>
@@ -140,7 +137,7 @@ const FakeAuthUser = () => {
         </InputBox>
         {accountInputError && <Text>{errMessageAccount}</Text>}
         <Button>로그인</Button>
-      </Wrapper>
+      </Form>
     </Container>
   );
 };

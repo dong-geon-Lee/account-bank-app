@@ -104,13 +104,16 @@ const TransferAction = () => {
         ...currentUser,
         movements: [
           ...currentUser.movements,
-          { id: currentUser.movements.length + 1, price: -transferAmount },
+          {
+            id: currentUser.movements.length + 1,
+            price: Number(-transferAmount),
+          },
         ],
       });
 
       setAccounts((prevState) => {
         return prevState.map((user) => {
-          if (user.id === currentUser.id) {
+          if (user.userId === currentUser.userId) {
             return {
               ...user,
               movements: [
@@ -123,7 +126,7 @@ const TransferAction = () => {
             };
           }
 
-          if (user.id === targetTransferUser.id) {
+          if (user.userId === targetTransferUser.userId) {
             return {
               ...user,
               movements: [
